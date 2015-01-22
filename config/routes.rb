@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  root 'donations#index'
+
+  namespace :donations do
+    resource :stripe_donations, only: [:create]
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
