@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122062120) do
+ActiveRecord::Schema.define(version: 20150123073626) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "donors", force: true do |t|
+    t.string   "email",              null: false
+    t.string   "stripe_customer_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "stripe_plans", force: true do |t|
     t.string   "stripe_id"
@@ -21,16 +31,16 @@ ActiveRecord::Schema.define(version: 20150122062120) do
     t.datetime "updated_at"
   end
 
-  add_index "stripe_plans", ["stripe_id"], name: "index_stripe_plans_on_stripe_id", unique: true
+  add_index "stripe_plans", ["stripe_id"], name: "index_stripe_plans_on_stripe_id", unique: true, using: :btree
 
   create_table "stripe_subscriptions", force: true do |t|
     t.integer  "stripe_plan_id",            null: false
-    t.string   "stripe_customer_id"
     t.string   "stripe_status"
     t.datetime "cancellation_requested_at"
     t.datetime "cancelled_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "donor_id",                  null: false
   end
 
 end
