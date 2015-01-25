@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150125011731) do
+ActiveRecord::Schema.define(version: 20150125012640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,13 +34,13 @@ ActiveRecord::Schema.define(version: 20150125011731) do
   add_index "stripe_plans", ["stripe_id"], name: "index_stripe_plans_on_stripe_id", unique: true, using: :btree
 
   create_table "stripe_subscriptions", force: true do |t|
-    t.integer  "stripe_plan_id",            null: false
     t.string   "stripe_status"
     t.datetime "cancellation_requested_at"
     t.datetime "cancelled_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "donor_id",                  null: false
+    t.integer  "plan_id",                   null: false
   end
 
 end
