@@ -3,8 +3,6 @@ class Donor < ActiveRecord::Base
   has_many :donations
   has_many :subscriptions
 
-  validates_presence_of :email
-
   before_create :create_stripe_customer
 
   attr_accessor :stripe_token
