@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :stripe_plan do
-    integer :amount
-    string :name
-    string :stripe_id
+    amount 10_00
+    name { "#{amount} / month" }
+    stripe_id { "#{amount}_month" }
   end
 end

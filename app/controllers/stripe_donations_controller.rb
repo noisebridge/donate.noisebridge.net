@@ -5,13 +5,10 @@ class StripeDonationsController < ApplicationController
 
     @subscription = StripeSubscription.create!(
       donor: donor,
-      plan: plan,
+      plan: plan
     )
 
-    respond_to do |format|
-      format.html
-      format.json { @subscription.json }
-    end
+    head :created
   end
 
   private

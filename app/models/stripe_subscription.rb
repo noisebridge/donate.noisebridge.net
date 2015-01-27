@@ -1,6 +1,9 @@
 class StripeSubscription < ActiveRecord::Base
+
   belongs_to(:donor)
-  belongs_to(:plan)
+  belongs_to(:plan, class_name: 'StripePlan')
+
+  delegate :stripe_customer, to: :donor
 
   validates_presence_of(:donor)
   validates_presence_of(:plan)
@@ -10,7 +13,7 @@ class StripeSubscription < ActiveRecord::Base
   private
 
   def create_stripe_subscription
-    self.stripe_subscription_id = donor.subscriptions.create(
+    self.stripe_subscription_id = stripe_customer.subscriptions.create(
       plan: plan.stripe_id
     ).id
   end

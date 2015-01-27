@@ -14,7 +14,7 @@ class StripePlan < ActiveRecord::Base
   private
 
   def set_name
-    self.name = "#{number_to_currency(amount / 100, precision: 0)}/month"
+    self.name = "#{number_to_currency(amount / 100, precision: 0)} / month"
   end
 
   def generate_stripe_id
