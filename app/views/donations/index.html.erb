@@ -1,66 +1,58 @@
-<script type="text/javascript">
-  jQuery(function($) {
-    $('#donation_form').submit(function(event) {
-      var $form = $(this);
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 donation-header">
+    <%= image_tag('noisebridge_logo.jpg', class: 'center noisebridge_logo') %>
 
-      // Disable the submit button to prevent repeated clicks
-      $form.find('button').prop('disabled', true);
-
-      Stripe.card.createToken($form, stripeResponseHandler);
-
-      // Prevent the form from submitting with the default action
-      return false;
-    });
-  });
-
-  function stripeResponseHandler(status, response) {
-    var $form = $('#donation_form');
-
-    if (response.error) {
-      // Show the errors on the form
-      // $form.find('.payment-errors').text(response.error.message);
-      $form.find('button').prop('disabled', false);
-    } else {
-      // response contains id and card, which contains additional card details
-      var token = response.id;
-      // Insert the token into the form so it gets submitted to the server
-      $form.append($('<input type="hidden" name="donor[stripe_token]" />').val(token));
-      // and submit
-      $form.get(0).submit();
-    }
-  };
-</script>
-<h3>Donate!</h3>
-
-<%= form_tag("/donations/stripe_donations", method: :post, id: "donation_form") do %>
-  <%= label_tag "donor[email]" %>
-  <%= text_field_tag "donor[email]" %>
-
-  <%= label_tag "plan[amount]" %>
-  <%= text_field_tag "plan[amount]" %>
-
-  <div class="form-row">
-    <label>
-      <span>Card Number</span>
-      <input type="text" size="20" data-stripe="number"/>
-    </label>
+    <h3>Noisebridge: a hacker spaceship needs your help!<h3>
   </div>
+  <div class="col-md-6 col-md-offset-3 donation-form">
 
-  <div class="form-row">
-    <label>
-      <span>CVC</span>
-      <input type="text" size="4" data-stripe="cvc"/>
-    </label>
+    <%= form_tag("/donations/stripe_donations", method: :post, id: "donation_form") do %>
+      <div class="form-group">
+        <label for="donor[email]">
+          Email <small>If you want to hear about awesome future Noisebridge things</small>
+        </label>
+        <input type="email" class="form-control" name="donor[email]" placeholder="you@example.org" %>
+      </div>
+
+      <div class="form-group">
+        <label for="plan[amount]">
+          Donation
+        </label>
+        <select name="plan[amount]" class="form-control">
+          <%= (0..4).map {|i| 10 * 2**i }.each do |amount| %>
+            <option value="<%= amount * 100 %>"><%= number_to_currency(amount, precision: 0) %></option>
+          <% end %>
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <label for="donor[card]">
+          Card Number
+        </label>
+        <input type="text" class="form-control cc-number" size="20" data-stripe="number" placeholder="Card number" />
+      </div>
+
+      <div class="form-group">
+        <label for="donor[card]">
+          CVC
+        </label>
+        <input type="text" class="form-control cc-cvc" size="20" data-stripe="cvc" placeholder="CVC" />
+      </div>
+
+      <div class="form-group expiration">
+        <label>
+          <span>Expiration (MM/YY)</span>
+        </label>
+        <div>
+          <input type="text" class="form-control cc-exp" data-stripe="exp" placeholder="MM / YY">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= submit_tag "Donate", {class: "btn btn-primary"} %>
+      </div>
+
+    <% end %>
   </div>
-
-  <div class="form-row">
-    <label>
-      <span>Expiration (MM/YYYY)</span>
-      <input type="text" size="2" data-stripe="exp-month"/>
-    </label>
-    <span> / </span>
-    <input type="text" size="4" data-stripe="exp-year"/>
-  </div>
-
-  <%= submit_tag "Donate" %>
-<% end %>
+</div>

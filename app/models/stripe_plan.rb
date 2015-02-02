@@ -22,7 +22,7 @@ class StripePlan < ActiveRecord::Base
   end
 
   def create_stripe_plan
-    return if Stripe::Plan.retrieve(self.stripe_id).present?
+    return if Stripe::Plan.retrieve(self.stripe_id).present? rescue false
 
     Stripe::Plan.create(
       id: self.stripe_id,

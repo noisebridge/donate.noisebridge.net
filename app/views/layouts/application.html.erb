@@ -5,11 +5,10 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
-  <%= stylesheet_link_tag 'bootstap.min' %>
-  <%= javascript_include_tag 'bootstap.min' %>
 
   <%= csrf_meta_tags %>
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/1.2.1/jquery.payment.min.js"></script>
 
   <script type="text/javascript">
     Stripe.setPublishableKey("<%= Rails.application.secrets.stripe_api_key %>");
