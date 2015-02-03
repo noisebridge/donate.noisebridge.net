@@ -20,33 +20,16 @@
         </label>
         <select name="plan[amount]" class="form-control">
           <%= (0..4).map {|i| 10 * 2**i }.each do |amount| %>
-            <option value="<%= amount * 100 %>"><%= number_to_currency(amount, precision: 0) %></option>
+            <option value="<%= amount * 100 %>"><%= number_to_currency(amount, precision: 0) %> / month</option>
           <% end %>
         </select>
       </div>
 
 
-      <div class="form-group">
-        <label for="donor[card]">
-          Card Number
-        </label>
+      <div class="form-group cc-details">
         <input type="text" class="form-control cc-number" size="20" data-stripe="number" placeholder="Card number" />
-      </div>
-
-      <div class="form-group">
-        <label for="donor[card]">
-          CVC
-        </label>
         <input type="text" class="form-control cc-cvc" size="20" data-stripe="cvc" placeholder="CVC" />
-      </div>
-
-      <div class="form-group expiration">
-        <label>
-          <span>Expiration (MM/YY)</span>
-        </label>
-        <div>
-          <input type="text" class="form-control cc-exp" data-stripe="exp" placeholder="MM / YY">
-        </div>
+        <input type="text" class="form-control cc-exp" data-stripe="exp" placeholder="MM / YY">
       </div>
 
       <div class="form-group">
