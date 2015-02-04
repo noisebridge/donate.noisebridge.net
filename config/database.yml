@@ -27,4 +27,4 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  password: <%= Rails.env.secrets.postgresql_password %>
