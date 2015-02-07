@@ -6,7 +6,7 @@
   </div>
   <div class="col-md-6 col-md-offset-3 donation-form">
 
-    <%= form_tag("/donations/stripe_donations", method: :post, id: "donation_form") do %>
+    <%= form_tag("/donations/charges", method: :post, id: "donation_form") do %>
       <div class="form-group">
         <label for="donor[email]">
           Email <small>If you want to hear about awesome future Noisebridge things</small>
@@ -15,10 +15,10 @@
       </div>
 
       <div class="form-group">
-        <label for="plan[amount]">
+        <label for="charge[amount]">
           Donation
         </label>
-        <select name="plan[amount]" class="form-control">
+        <select name="charge[amount]" class="form-control">
           <%= (0..4).map {|i| 10 * 2**i }.each do |amount| %>
             <option value="<%= amount * 100 %>"><%= number_to_currency(amount, precision: 0) %> / month</option>
           <% end %>

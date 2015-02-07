@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe StripeDonationsController, type: :controller do
+describe SubscriptionsController, type: :controller do
   let(:stripe_token) { "tok_12345" }
   let(:amount) { 10_00 }
   let(:email) { "treasurer@noisebridge.net" }
