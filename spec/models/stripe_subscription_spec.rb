@@ -8,14 +8,16 @@ describe StripeSubscription, type: :model do
   before do
     allow(Stripe::Customer).to receive(:create).and_return(stripe_customer)
     allow(Stripe::Customer).to receive(:retrieve).and_return(stripe_customer)
+    allow(Stripe::Plan).to receive(:retrieve).and_return(true)
   end
 
-  it 'requires a donor'
+  it { is_expected.to validate_presence_of(:donor) }
+  it { is_expected.to validate_presence_of(:plan) }
 
-  it 'requires a plan'
+  it { is_expected.to belong_to(:donor) }
 
   it 'creates a Stripe::Subscription when creating' do
-    sub_double = double(:id)
+    sub_double = double(id: 1)
     expect(stripe_customer).to receive_message_chain(:subscriptions, :create).with(plan: plan.stripe_id).and_return(sub_double)
 
     subject.class.create(donor: donor, plan: plan)

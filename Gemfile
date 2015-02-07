@@ -20,4 +20,6 @@ group :development, :test do
   gem 'pry'
   gem 'rspec-rails', '~> 3.1'
   gem 'factory_girl_rails'
+  gem 'guard-rspec', require: false
+  gem 'shoulda-matchers', require: false
 end

@@ -16,11 +16,10 @@ class Charge < ActiveRecord::Base
   end
 
   def create_stripe_charge
-    binding.pry
     self.stripe_charge_id = Stripe::Charge.create(
       amount: self.amount,
       currency: 'usd',
       customer: donor.stripe_customer.id
-    )
+    ).id
   end
 end

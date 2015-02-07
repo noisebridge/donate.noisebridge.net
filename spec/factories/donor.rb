@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :donor do
-    string :email
+    sequence(:email) {|n| "donor-#{n}@example.org" }
   end
 end
