@@ -1,1 +1,1 @@
-config/secrets.yml filter=git-crypt diff=git-crypt
+.env filter=git-crypt diff=git-crypt
