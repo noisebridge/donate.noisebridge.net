@@ -1,5 +1,7 @@
 # Noisebridge-donate
 
+[![Circle CI](https://circleci.com/gh/patrickod/noisebridge-donate/tree/master.svg?style=svg)](https://circleci.com/gh/patrickod/noisebridge-donate/tree/master)
+
 A really simple rails application to accept credit card donations for [Noisebridge](https://noisebridge.net)
 
 ## Installation
@@ -8,6 +10,7 @@ A really simple rails application to accept credit card donations for [Noisebrid
 
   * PostgreSQL
   * Ruby 2.2.0
+  * foreman `gem install foreman`
 
 If you have `rbenv` and `ruby-build` installed you should be able to do the following
 ```bash
@@ -16,6 +19,11 @@ gem install bundler
 rbenv rehash
 bundle install
 ```
+
+### Running with secrets
+The secrets for the development environment are kept encrypted in the `.env` file. `git-crypt` will unlock them.
+
+To run the rails server locally with the secrets loaded use `foreman start web`
 
 ### Databases
 
