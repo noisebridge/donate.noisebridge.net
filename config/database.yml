@@ -6,17 +6,15 @@
 #
 default: &default
   adapter: postgresql
+  username: noisebridge
   encoding: unicode
   pool: 5
-  username: noisebridge
+  timeout: 5000
 
 development:
   <<: *default
-  adapter: postgresql
-  encoding: unicode
+  password: noisebridge
   database: noisebridge_donate_development
-  pool: 5
-  username: noisebridge
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -27,4 +25,4 @@ test:
 
 production:
   <<: *default
-  password: <%= Rails.env.secrets.postgresql_password %>
+  database: db/production.sqlite3
