@@ -1,6 +1,6 @@
 class Donor < ActiveRecord::Base
 
-  has_many :donations
+  has_many :charges
   has_many :subscriptions
 
   before_create :create_stripe_customer
