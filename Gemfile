@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 source 'https://code.stripe.com'
 
 
-gem 'stripe'
+gem 'stripe', :source => 'https://code.stripe.com/'
 gem 'pg'
 
 gem 'rails', '4.1.8'
