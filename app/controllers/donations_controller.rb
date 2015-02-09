@@ -5,7 +5,7 @@ class DonationsController < ApplicationController
   private
 
   def donor_params
-    params.require(:donor).permit(:email, :stripe_token)
+    params.require(:donor).permit(:email, :stripe_token, :name)
   end
 
   def charge_params

@@ -1,0 +1,36 @@
+.donation-form {
+  font-family: 'Bitter', serif;
+}
+
+.form-group.cc-details {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+
+  input {
+    margin: 0px 5px;
+
+    &:first-child {
+      margin-left: 0px;
+    }
+
+    &:last-child {
+      margin-right: 0px;
+    }
+
+    width: 0%;
+    max-width: 50%;
+
+    &.cc-number {
+      flex-grow: 5;
+    }
+
+    &.cc-exp, &.cc-cvc {
+      flex-grow: 1;
+    }
+
+    &.cc-cvc {
+      max-width: 17%;
+    }
+  }
+}

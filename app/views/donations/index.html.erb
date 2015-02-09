@@ -1,41 +1,18 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2 donation-header">
     <%= image_tag('noisebridge_logo.jpg', class: 'center noisebridge_logo') %>
-
-    <h3>Noisebridge: a hacker spaceship needs your help!<h3>
+    <h3>Noisebridge: a hacker spaceship needs your help!</h3>
   </div>
-  <div class="col-md-6 col-md-offset-3 donation-form">
 
-    <%= form_tag("/donations/charges", method: :post, id: "donation_form") do %>
-      <div class="form-group">
-        <label for="donor[email]">
-          Email <small>If you want to hear about awesome future Noisebridge things</small>
-        </label>
-        <input type="email" class="form-control" name="donor[email]" placeholder="you@example.org" %>
-      </div>
+  <div class="col-md-6 col-md-offset-3 donation-progress">
+    <%= render "progress_bar" %>
+  </div>
 
-      <div class="form-group">
-        <label for="charge[amount]">
-          Donation
-        </label>
-        <select name="charge[amount]" class="form-control">
-          <%= (0..4).map {|i| 10 * 2**i }.each do |amount| %>
-            <option value="<%= amount * 100 %>"><%= number_to_currency(amount, precision: 0) %> / month</option>
-          <% end %>
-        </select>
-      </div>
+  <div class="col-md-4 col-md-offset-2 donation-form">
+    <%= render "charge_form" %>
+  </div>
 
-
-      <div class="form-group cc-details">
-        <input type="text" class="form-control cc-number" size="20" data-stripe="number" placeholder="Card number" />
-        <input type="text" class="form-control cc-cvc" size="20" data-stripe="cvc" placeholder="CVC" />
-        <input type="text" class="form-control cc-exp" data-stripe="exp" placeholder="MM / YY">
-      </div>
-
-      <div class="form-group">
-        <%= submit_tag "Donate", {class: "btn btn-primary"} %>
-      </div>
-
-    <% end %>
+  <div class="col-md-4 donation-form">
+    <%= render "leaderboard" %>
   </div>
 </div>

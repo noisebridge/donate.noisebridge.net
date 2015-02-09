@@ -10,66 +10,45 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
  */
 
 //= require bootstrap
+//= require_tree .
 
+// Google fonts
+@import url(http://fonts.googleapis.com/css?family=Bitter:400,700);
+
+body {
+  font-family: 'Bitter', serif;
+}
+
+// main container body
 .container {
   margin: 30px 0px;
 }
 
-.noisebridge_logo {
-  width: 150px;
-}
-
 .donation-header {
+  font-family: 'Bitter', serif;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 
   h3 {
     font-weight: bold;
   }
-}
 
-.form-group.cc-details {
-  flex: 1;
-  display: flex;
-  justify-content: space-between;
-
-
-  input {
-    margin: 0px 5px;
-
-    &:first-child {
-      margin-left: 0px;
-    }
-
-    &:last-child {
-      margin-right: 0px;
-    }
-
-    width: 0%;
-    max-width: 50%;
-
-    &.cc-number {
-      flex-grow: 4;
-    }
-
-    &.cc-exp, &.cc-cvc {
-      flex-grow: 1;
-    }
+  .noisebridge_logo {
+    width: 120px;
   }
 }
 
-.expiration div {
-  display: flex;
-  justify-content: space-between;
-
-  select {
-    width: 48%;
+.donation-progress {
+  h3 {
+    font-family: 'Bitter', serif;
+    text-align: center;
   }
+
 }
