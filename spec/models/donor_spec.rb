@@ -13,4 +13,17 @@ describe Donor, type: :model do
     Donor.create!(email: email, stripe_token: stripe_token)
   end
 
+  context "#name" do
+    let(:anonymous) { create(:donor, anonymous: true, name: "Torrie Fischer") }
+    let(:mitch) { create(:donor, name: "Mitch Altman") }
+
+    it "is Anonymous when anonymous: true" do
+      expect(anonymous.name).to eq("Anonymous")
+    end
+
+    it "is their name when anonymous: false" do
+      expect(mitch.name).to eq("Mitch Altman")
+    end
+  end
+
 end

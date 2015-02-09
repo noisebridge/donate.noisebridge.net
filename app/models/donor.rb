@@ -11,14 +11,17 @@ class Donor < ActiveRecord::Base
     Stripe::Customer.retrieve(self.stripe_customer_id)
   end
 
+  def name
+    anonymous? ? "Anonymous" : super
+  end
+
   private
 
   def create_stripe_customer
-    customer = Stripe::Customer.create(
+    self.stripe_customer_id = Stripe::Customer.create(
         email: self.email,
         card: self.stripe_token
-    )
-    self.stripe_customer_id = customer.id
+    ).id
   end
 end
 
