@@ -1,9 +1,11 @@
 class Donor < ActiveRecord::Base
 
-  has_many :charges
-  has_many :subscriptions
+  has_many :charges, dependent: :destroy
+  has_many :stripe_subscriptions, dependent: :destroy
 
   before_create :create_stripe_customer
+
+  validates_presence_of(:email, allow_blank?: false)
 
   attr_accessor :stripe_token
 

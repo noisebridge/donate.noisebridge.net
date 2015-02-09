@@ -5,6 +5,8 @@ describe Donor, type: :model do
 
   let(:email) { 'treasurer@noisebridge.net' }
 
+  it { is_expected.to validate_presence_of(:email) }
+
   it 'creates Stripe::Customer objects on creation' do
     expect(Stripe::Customer).to receive(:create).once.with(
       email: email,

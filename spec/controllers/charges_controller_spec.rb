@@ -24,7 +24,31 @@ describe ChargesController, type: :controller do
       .with(amount: amount, currency: 'usd', customer: stripe_customer.id)
       .and_return(stripe_charge)
 
-    post :create, donor: {email: email, stripe_token: stripe_token}, charge: {amount: 10_00}, format: :json
+    post :create,
+      donor: {email: email, stripe_token: stripe_token},
+      charge: {amount: 10_00},
+      format: :json
+    expect(assigns(:charge)).to be_persisted
+  end
+
+  it 'allows for anonymous donations' do
+    expect(Donor).to receive(:create!).with(
+      email: email,
+      stripe_token: stripe_token,
+      anonymous: true
+    ).and_call_original
+
+    expect(Stripe::Charge).to receive(:create)
+      .once
+      .with(amount: amount, currency: 'usd', customer: stripe_customer.id)
+      .and_return(stripe_charge)
+
+    post :create,
+      donor: {email: email, stripe_token: stripe_token, anonymous: true},
+      charge: {amount: 10_00},
+      format: :json
+    expect(assigns(:donor)).to be_anonymous
+    expect(assigns(:charge)).to be_persisted
   end
 end
 
