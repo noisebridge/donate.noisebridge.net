@@ -1,5 +1,10 @@
 class DonationsController < ApplicationController
+
   def index
+  end
+
+  def thanks
+    @title = "Thanks!"
   end
 
   private

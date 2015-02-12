@@ -5,9 +5,9 @@ class ChargesController < DonationsController
   def create
     @charge = @donor.charges.create(charge_params)
 
-    if @charge.persisted?
+    if @charge.save
       flash[:success] = "Thanks for your donation!"
-      redirect_to(root_url)
+      redirect_to(thanks_path)
     else
       respond :json, @charge.errors
     end
