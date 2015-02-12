@@ -14,7 +14,13 @@ class Donor < ActiveRecord::Base
   end
 
   def name
-    anonymous? ? "Anonymous" : super
+    if anonymous?
+      "Anonymous"
+    elsif super.blank?
+      email
+    else
+      super
+    end
   end
 
   private

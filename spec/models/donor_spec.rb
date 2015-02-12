@@ -17,10 +17,15 @@ describe Donor, type: :model do
 
   context "#name" do
     let(:anonymous) { create(:donor, anonymous: true, name: "Torrie Fischer") }
+    let(:email_only) { create(:donor, anonymous: false) }
     let(:mitch) { create(:donor, name: "Mitch Altman") }
 
     it "is Anonymous when anonymous: true" do
       expect(anonymous.name).to eq("Anonymous")
+    end
+
+    it "is their email when Anonymous = false and name is blank" do
+      expect(email_only.name).to eq(email_only.email)
     end
 
     it "is their name when anonymous: false" do

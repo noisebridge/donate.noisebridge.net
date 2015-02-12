@@ -199,6 +199,6 @@ DEPENDENCIES
   shoulda-matchers
   spring
   sqlite3
-  stripe
+  stripe!
   turbolinks
   uglifier (>= 1.3.0)

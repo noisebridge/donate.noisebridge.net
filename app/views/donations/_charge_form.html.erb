@@ -7,7 +7,7 @@
     </label>
     <select name="charge[amount]" class="form-control">
       <%= (0..4).map {|i| 10 * 2**i }.each do |amount| %>
-        <option value="<%= amount * 100 %>"><%= number_to_currency(amount, precision: 0) %> / month</option>
+        <option value="<%= amount * 100 %>"><%= number_to_currency(amount, precision: 0) %></option>
       <% end %>
     </select>
   </div>
