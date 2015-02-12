@@ -3,8 +3,25 @@ jQuery(function($) {
   $(".cc-exp").payment('formatCardExpiry');
   $(".cc-cvc").payment('formatCardCVC');
 
+  function displayError(form, error) {
+    var template = _.template($("#notice-template").html());
+    form.prepend(template({
+      type: 'danger',
+      content: error.message
+    }));
+
+    form.find("[data-stripe=" + error.param + "]").closest(".form-group").addClass("has-error");
+  };
+
+  function resetErrors(form) {
+    form.find(".has-error").removeClass("has-error")
+    form.find(".alert").remove();
+  };
+
   $('form.donation-form').submit(function(event) {
     var $form = $(this);
+
+    resetErrors($form);
 
     $form.find('button').prop('disabled', true);
 
@@ -15,6 +32,7 @@ jQuery(function($) {
       exp_year: $form.find(".cc-exp").payment('cardExpiryVal').year
     }, function(status, response) {
       if (response.error) {
+        displayError($form, response.error);
         $form.find('button').prop('disabled', false);
       } else {
         var token = response.id;

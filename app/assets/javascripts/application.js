@@ -12,5 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require underscore-min
 //= require_tree .
+
+
+// Change underscore to use non-ERB template syntax
+_.templateSettings = {
+  interpolate: /\{\{(.+?)\}\}/g
+};
