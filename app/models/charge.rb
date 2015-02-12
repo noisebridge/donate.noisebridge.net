@@ -21,5 +21,8 @@ class Charge < ActiveRecord::Base
       currency: 'usd',
       customer: donor.stripe_customer.id
     ).id
+  rescue Stripe::CardError => exc
+    errors.add(:card, exc.message)
+    false
   end
 end
