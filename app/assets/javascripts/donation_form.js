@@ -18,6 +18,12 @@ jQuery(function($) {
     form.find(".alert").remove();
   };
 
+  // Allow for custom amounts when "Other" selected in donation amount dropdown
+  $('form.donation-form select[name="charge[amount]"]').on('change', function(e) {
+    var custom_input = $('form.donation-form .custom-amount');
+    custom_input.toggleClass('hidden', $(e.target).val() != "other");
+  });
+
   $('form.donation-form').submit(function(event) {
     var $form = $(this);
 
