@@ -26,7 +26,7 @@ describe ChargesController, type: :controller do
 
     post :create,
       donor: {email: email, stripe_token: stripe_token},
-      charge: {amount: 10_00},
+      charge: {amount: 10},
       format: :json
     expect(assigns(:charge)).to be_persisted
   end
@@ -45,7 +45,7 @@ describe ChargesController, type: :controller do
 
     post :create,
       donor: {email: email, stripe_token: stripe_token, anonymous: true},
-      charge: {amount: 10_00},
+      charge: {amount: 10},
       format: :json
     expect(assigns(:donor)).to be_anonymous
     expect(assigns(:charge)).to be_persisted
