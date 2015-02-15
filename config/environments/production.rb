@@ -75,4 +75,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Set a custom X-VERSION header w/ current git SHA
+  config.action_dispatch.default_headers.merge!(
+    'X-Version' =>  Dir.pwd.match(/noisebridge-donate-([0-9a-f]{40})/)[1]
+  )
 end
