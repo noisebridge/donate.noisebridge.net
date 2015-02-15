@@ -1,7 +1,7 @@
-#!/usr/bin/env bash -ex
+#!/bin/bash -ex
 
 # Make new directory for release
-mkdir -p ~/noisebridge-donate-$(git rev-parse HEAD) && git archive master master | tar -x -C ~/noisebridge-donate-$(git rev-parse HEAD)
+mkdir -p ~/noisebridge-donate-$(git rev-parse HEAD) && git archive master | tar -x -C ~/noisebridge-donate-$(git rev-parse HEAD)
 
 cd ~/noisebridge-donate-$(git rev-parse HEAD)
 
