@@ -11,7 +11,8 @@ class ChargesController < DonationsController
     if @charge.save
       redirect_to(thanks_path)
     else
-      respond :json, @charge.errors
+      flash[:danger] = @charge.errors.full_messages
+      redirect_to root_url
     end
   end
 end

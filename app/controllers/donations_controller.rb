@@ -25,7 +25,15 @@ class DonationsController < ApplicationController
     @donor = if Donor.exists?(email: donor_params[:email])
       Donor.find_by(email: donor_params[:email])
     else
-      Donor.create!(donor_params)
+      create_donor
+    end
+  end
+
+  def create_donor
+    @donor = Donor.new(donor_params)
+    if !@donor.save
+      flash[:danger] = @donor.errors.full_messages
+      return redirect_to root_url
     end
   end
 end

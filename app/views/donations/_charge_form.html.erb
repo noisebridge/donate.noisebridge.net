@@ -1,7 +1,10 @@
 <h3>Make a donation</h3>
+
+<%= render "notices" %>
+
 <%= form_tag("/donations/charges", method: :post, class: "donation-form") do %>
   <!-- Donation amount -->
-  <div class="form-group">
+  <div class="form-group amount">
     <label for="charge[amount]">
       Donation
     </label>
@@ -12,11 +15,6 @@
       <option value="other">Other</option>
     </select>
 
-    <div class="input-group custom-amount hidden">
-      <span class="input-group-addon">$</span>
-      <input type="text" name="charge[amount]" class="form-control" inputmode="number" aria-label="Amount (to the nearest dollar)">
-      <span class="input-group-addon">.00</span>
-    </div>
   </div>
 
   <!-- Credit card details -->
@@ -52,3 +50,11 @@
   </div>
 
 <% end %>
+
+<script id="donation-form-custom-amount" type="text/html">
+  <div class="input-group custom-amount">
+    <span class="input-group-addon">$</span>
+    <input type="text" name="charge[amount]" class="form-control" inputmode="number" aria-label="Amount (to the nearest dollar)">
+    <span class="input-group-addon">.00</span>
+  </div>
+</script>
