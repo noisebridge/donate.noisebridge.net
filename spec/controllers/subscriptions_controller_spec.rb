@@ -17,7 +17,7 @@ describe SubscriptionsController, type: :controller do
     let(:plan) { create(:stripe_plan, amount: 10_00) }
 
     it 'creates a Donor and StripeSubscription' do
-      expect(Donor).to receive(:create!).with(
+      expect(Donor).to receive(:new).with(
         email: email,
         stripe_token: stripe_token
       ).and_call_original

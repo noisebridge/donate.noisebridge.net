@@ -14,7 +14,7 @@ describe ChargesController, type: :controller do
   end
 
   it 'creates a Donor and Charge' do
-    expect(Donor).to receive(:create!).with(
+    expect(Donor).to receive(:new).with(
       email: email,
       stripe_token: stripe_token
     ).and_call_original
@@ -32,7 +32,7 @@ describe ChargesController, type: :controller do
   end
 
   it 'allows for anonymous donations' do
-    expect(Donor).to receive(:create!).with(
+    expect(Donor).to receive(:new).with(
       email: email,
       stripe_token: stripe_token,
       anonymous: true

@@ -30,10 +30,11 @@ class DonationsController < ApplicationController
   end
 
   def create_donor
-    @donor = Donor.new(donor_params)
-    if !@donor.save
-      flash[:danger] = @donor.errors.full_messages
+    donor = Donor.new(donor_params)
+    if !donor.save
+      flash[:danger] = donor.errors.full_messages
       return redirect_to root_url
     end
+    donor
   end
 end
