@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe SubscriptionsController, type: :controller do
   let(:stripe_token) { "tok_12345" }
-  let(:amount) { 10_00 }
+  let(:amount) { 10 }
   let(:email) { "treasurer@noisebridge.net" }
 
   let(:stripe_customer) { double(id: 'customer-1') }
@@ -26,7 +26,7 @@ describe SubscriptionsController, type: :controller do
         plan: plan.stripe_id
       ).and_return(double(id: 'subscription-1'))
 
-      post :create, donor: {email: email, stripe_token: stripe_token}, plan: {amount: 10_00}, format: :json
+      post :create, donor: {email: email, stripe_token: stripe_token}, plan: {amount: 10}, format: :json
     end
   end
 end
