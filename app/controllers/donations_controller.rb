@@ -7,6 +7,10 @@ class DonationsController < ApplicationController
     @title = "Thanks!"
   end
 
+  def recurring
+    @title = "Recurring donations"
+  end
+
   private
 
   def donor_params

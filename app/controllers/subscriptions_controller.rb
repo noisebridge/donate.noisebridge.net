@@ -10,6 +10,6 @@ class SubscriptionsController < DonationsController
       plan: plan
     )
 
-    head :created
+    redirect_to thanks_path
   end
 end
