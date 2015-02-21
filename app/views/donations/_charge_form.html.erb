@@ -8,13 +8,7 @@
     <label for="charge[amount]">
       Donation
     </label>
-    <select name="charge[amount]" class="form-control">
-      <%= (0..4).map {|i| 10 * 2**i }.each do |amount| %>
-        <option value="<%= amount %>"><%= number_to_currency(amount, precision: 0) %></option>
-      <% end %>
-      <option value="other">Other</option>
-    </select>
-
+    <%= select_amount('charge[amount]') %>
   </div>
 
   <!-- Credit card details -->

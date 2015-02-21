@@ -5,16 +5,10 @@
 <%= form_tag("/donations/subscriptions", method: :post, class: "donation-form") do %>
   <!-- Donation amount -->
   <div class="form-group amount">
-    <label for="subscription[amount]">
+    <label for="plan[amount]">
       Recurring donation
     </label>
-    <select name="plan[amount]" class="form-control">
-      <%= (0..4).map {|i| 10 * 2**i }.each do |amount| %>
-        <option value="<%= amount %>"><%= number_to_currency(amount, precision: 0) %></option>
-      <% end %>
-      <option value="other">Other</option>
-    </select>
-
+    <%= select_amount('plan[amount]') %>
   </div>
 
   <!-- Credit card details -->
