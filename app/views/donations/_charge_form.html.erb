@@ -1,9 +1,10 @@
 <h3>Make a donation</h3>
 
+<script src="https://checkout.stripe.com/checkout.js"></script>
+
 <%= render "notices" %>
 
 <%= form_tag("/donations/charges", method: :post, class: "donation-form") do %>
-  <!-- Donation amount -->
   <div class="form-group amount">
     <label for="charge[amount]">
       Donation
@@ -11,14 +12,6 @@
     <%= select_amount('charge[amount]') %>
   </div>
 
-  <!-- Credit card details -->
-  <div class="form-group cc-details">
-    <input type="text" class="form-control cc-number" size="20" data-stripe="number" inputmode="numeric" placeholder="Card number" />
-    <input type="text" class="form-control cc-cvc" size="20" data-stripe="cvc" inputmode="numeric" placeholder="CVC" />
-    <input type="text" class="form-control cc-exp" data-stripe="exp" inputmode="numeric" placeholder="MM / YY">
-  </div>
-
-  <!-- Donor information -->
   <div class="form-group">
     <label for="donor[email]">
       Email
@@ -33,17 +26,56 @@
     <input type="text" class="form-control" name="donor[name]" placeholder="Edward Snowden" %>
   </div>
 
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" name="donor[anonymous]"> I wish to be anonymous
-    </label>
-  </div>
-
+  <%= hidden_field_tag("charge[token]") %>
+  <%= hidden_field_tag("charge[amount]") %>
   <div class="form-group">
     <%= button_tag "Donate", {class: "btn btn-primary"} %>
   </div>
-
 <% end %>
+
+<script>
+  var handler = StripeCheckout.configure({
+    key: '<%= Rails.application.secrets.stripe_api_key %>',
+    image: '<%= image_url("noisebridge_logo.jpg") %>',
+    token: function(token) {
+      $('form.donation-form input[name="donor[email]"]').val(token.email);
+      $('form.donation-form input[name="charge[token]"]').val(token.id);
+      $('form.donation-form input[name="charge[amount]"]').val(donationAmountInDollars());
+      $('form.donation-form').submit();
+      debugger;
+    }
+  });
+
+  function donationAmountInCents() {
+    if ($("form.donation-form select").val() == "other") {
+      return parseInt($('form.donation-form .custom-amount input').val()) * 100;
+    } else {
+      return parseInt($("form.donation-form select").val()) * 100;
+    }
+  };
+
+  function donationAmountInDollars() {
+    return donationAmountInCents() / 100;
+  };
+
+  $('form.donation-form .btn').on('click', function(e) {
+    // Open Checkout with further options
+    handler.open({
+      name: 'Noisebridge',
+      email: $("form.donation-form input[name='donor[email]']").val(),
+      description: "$" + donationAmountInDollars() + " donation",
+      zipCode: true,
+      amount: donationAmountInCents(),
+      bitcoin: true
+    });
+    e.preventDefault();
+  });
+
+  // Close Checkout on page navigation
+  $(window).on('popstate', function() {
+    handler.close();
+  });
+</script>
 
 <script id="donation-form-custom-amount" type="text/html">
   <div class="input-group custom-amount">
