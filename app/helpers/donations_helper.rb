@@ -10,6 +10,12 @@ module DonationsHelper
     160
   ]
 
+  STANDARD_DUES_AMOUNT = [
+    [40, "Starving hacker"],
+    [80, "Regular"],
+    [160, "Doing well"]
+  ]
+
   def top_ten_charges
     Charge.order('amount DESC').limit(10)
   end
@@ -28,8 +34,18 @@ module DonationsHelper
     end + [["Other", "other"]]
   end
 
+  def dues_amounts
+    STANDARD_DUES_AMOUNT.map do |amount, label|
+      ["#{number_to_currency(amount, precision: 0)} - #{label}", amount]
+    end
+  end
+
   def select_amount(name)
     select_tag(name, options_for_select(amounts, params[:amount]), class: 'form-control')
+  end
+
+  def dues_select_amount(name)
+    select_tag(name, options_for_select(dues_amounts, params[:amount]), class: 'form-control')
   end
 end
 

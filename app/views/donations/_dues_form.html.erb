@@ -1,14 +1,14 @@
-<h3>Start a recurring donation</h3>
+<h3>Set up a recurring dues payment</h3>
 
 <%= render "notices" %>
 
 <%= form_tag("/donations/subscriptions", method: :post, class: "donation-form") do %>
   <!-- Donation amount -->
   <div class="form-group amount">
-    <label for="plan[amount]">
-      Recurring donation
+    <label for="subscription[amount]">
+      Dues amount
     </label>
-    <%= select_amount('plan[amount]') %>
+    <%= dues_select_amount('plan[amount]') %>
   </div>
 
   <!-- Credit card details -->
@@ -33,24 +33,9 @@
     <input type="text" class="form-control" name="donor[name]" placeholder="Edward Snowden" %>
   </div>
 
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" name="donor[anonymous]"> I wish to be anonymous
-    </label>
-  </div>
-
-  <%= hidden_field_tag("subscription[dues]") %>
+  <%= hidden_field_tag("subscription[dues]", true) %>
 
   <div class="form-group">
     <%= button_tag "Donate", {class: "btn btn-primary"} %>
   </div>
-
 <% end %>
-
-<script id="donation-form-custom-amount" type="text/html">
-  <div class="input-group custom-amount">
-    <span class="input-group-addon">$</span>
-    <input type="text" name="plan[amount]" class="form-control" inputmode="number" aria-label="Amount (to the nearest dollar)">
-    <span class="input-group-addon">.00</span>
-  </div>
-</script>

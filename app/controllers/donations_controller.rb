@@ -11,6 +11,10 @@ class DonationsController < ApplicationController
     @title = "Recurring donations"
   end
 
+  def dues
+    @title = "Dues"
+  end
+
   private
 
   def donor_params
