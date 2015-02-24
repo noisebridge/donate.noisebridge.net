@@ -19,7 +19,7 @@ jQuery(function($) {
   };
 
   // Allow for custom amounts when "Other" selected in donation amount dropdown
-  $('form.donation-form select[name="charge[amount]"]').on('change', function(e) {
+  $('form.donation-form select').on('change', function(e) {
     var custom_input = $('form.donation-form .custom-amount');
     if ($(e.target).val() == "other") {
       var t = _.template($("#donation-form-custom-amount").html());
