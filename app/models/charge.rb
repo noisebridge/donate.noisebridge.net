@@ -16,6 +16,8 @@ class Charge < ActiveRecord::Base
   end
 
   def create_stripe_charge
+    return if self.stripe_charge_id.present?
+
     self.stripe_charge_id = Stripe::Charge.create(
       amount: self.amount,
       currency: 'usd',

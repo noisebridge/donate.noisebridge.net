@@ -7,12 +7,19 @@ describe Donor, type: :model do
 
   it { is_expected.to validate_presence_of(:email) }
 
-  it 'creates Stripe::Customer objects on creation' do
-    expect(Stripe::Customer).to receive(:create).once.with(
-      email: email,
-      card: stripe_token
-    ).and_return(double(id: "stripe_customer_1"))
-    Donor.create!(email: email, stripe_token: stripe_token)
+  context 'creating Stripe::Customer objects' do
+    it 'creates when no stripe_customer_id is set' do
+      expect(Stripe::Customer).to receive(:create).once.with(
+        email: email,
+        card: stripe_token
+      ).and_return(double(id: "stripe_customer_1"))
+      Donor.create!(email: email, stripe_token: stripe_token)
+    end
+
+    it 'does not create when stripe_customer_id is set' do
+      expect(Stripe::Customer).to_not receive(:create)
+      Donor.create!(email: email, stripe_customer_id: 'not-exist')
+    end
   end
 
   context "#name" do

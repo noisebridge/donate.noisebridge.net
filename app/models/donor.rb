@@ -26,6 +26,7 @@ class Donor < ActiveRecord::Base
   private
 
   def create_stripe_customer
+    return if self.stripe_customer_id.present?
     self.stripe_customer_id = Stripe::Customer.create(
         email: self.email,
         card: self.stripe_token

@@ -37,5 +37,11 @@ describe Charge, type: :model do
       expect(charge.save).to be_falsey
       expect(charge.errors[:card]).to include("Declined")
     end
+
+    it 'does not create a Stripe::Charge object if the stripe_charge_id is set already' do
+      charge.stripe_charge_id = 'forced'
+      expect(Stripe::Charge).to_not receive(:create)
+      charge.save!
+    end
   end
 end
