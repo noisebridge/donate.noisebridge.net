@@ -20,7 +20,7 @@ module NoisebridgeDonate
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    # Show 404 on error
+    # Let rails know we have routes to show on exceptions
     config.exceptions_app = self.routes
   end
 end
