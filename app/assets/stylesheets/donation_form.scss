@@ -1,5 +1,9 @@
 .donation-form {
   font-family: 'Bitter', serif;
+
+  textarea {
+    resize: none;
+  }
 }
 
 .form-group.cc-details {
