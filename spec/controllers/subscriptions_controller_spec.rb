@@ -28,20 +28,5 @@ describe SubscriptionsController, type: :controller do
 
       post :create, donor: {email: email, stripe_token: stripe_token}, plan: {amount: 10}, subscription: {dues: false}, format: :json
     end
-
-    it 'creates Subscriptions w/ dues: true' do
-      expect(Donor).to receive(:new).with(
-        email: email,
-        stripe_token: stripe_token
-      ).and_call_original
-
-      allow(stripe_customer).to receive_message_chain(:subscriptions, :create).with(
-        plan: plan.stripe_id
-      ).and_return(double(id: 'subscription-1'))
-
-      post :create, donor: {email: email, stripe_token: stripe_token}, plan: {amount: 10}, subscription: {dues: true}, format: :json
-
-      expect(assigns(:subscription).dues?).to eq(true)
-    end
   end
 end

@@ -9,8 +9,7 @@ class SubscriptionsController < DonationsController
 
     @subscription = StripeSubscription.new(
       donor: @donor,
-      plan: plan,
-      dues: subscription_params[:dues]
+      plan: plan
     )
 
     if @subscription.save
@@ -19,11 +18,5 @@ class SubscriptionsController < DonationsController
       flash[:danger] = @subscription.errors.full_messages
       redirect_to recurring_path
     end
-  end
-
-  private
-
-  def subscription_params
-    params.require(:subscription).permit(:dues)
   end
 end
