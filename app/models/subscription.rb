@@ -1,7 +1,9 @@
-class StripeSubscription < ActiveRecord::Base
+class Subscription < ActiveRecord::Base
+
+  self.table_name = 'stripe_subscriptions'
 
   belongs_to(:donor)
-  belongs_to(:plan, class_name: 'StripePlan')
+  belongs_to(:plan)
 
   delegate :stripe_customer, to: :donor
 

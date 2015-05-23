@@ -1,7 +1,7 @@
 class Donor < ActiveRecord::Base
 
   has_many :charges, dependent: :destroy
-  has_many :stripe_subscriptions, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy
 
   before_create :create_stripe_customer
 

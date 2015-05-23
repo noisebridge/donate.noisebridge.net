@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe StripePlan, type: :model do
+describe Plan, type: :model do
   before do
     allow(Stripe::Plan).to receive(:create)
   end
 
   it 'generates a stripe_id on create' do
-    plan = StripePlan.new(
+    plan = Plan.new(
       amount: 10_00,
       name: "$10/month"
     )
@@ -24,7 +24,7 @@ describe StripePlan, type: :model do
       interval: 'month',
       statement_descriptor: "Noisebridge donation"
     )
-    StripePlan.create(
+    Plan.create(
       amount: 10_00,
       name: "$10/month"
     )

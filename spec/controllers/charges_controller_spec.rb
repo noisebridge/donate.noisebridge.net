@@ -60,11 +60,11 @@ describe ChargesController, type: :controller do
       ).and_return(stripe_subscription)
     end
 
-    let(:plan) { StripePlan.create(amount: 10_00) }
+    let(:plan) { Plan.create(amount: 10_00) }
     let(:stripe_subscription) { double(id: 'sub-1') }
 
     it 'creates subscriptions when charge[:recurring] is passed' do
-      expect(StripePlan).to receive(:find_or_create_by!).with({
+      expect(Plan).to receive(:find_or_create_by!).with({
         amount: 10_00
       }).and_return(plan)
 

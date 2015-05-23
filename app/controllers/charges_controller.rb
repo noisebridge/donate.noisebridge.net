@@ -13,11 +13,11 @@ class ChargesController < DonationsController
   private
 
   def create_subscription
-    plan = StripePlan.find_or_create_by!({
+    plan = Plan.find_or_create_by!({
       amount: charge_params[:amount].to_i * 100
     })
 
-    @subscription = StripeSubscription.new(
+    @subscription = Subscription.new(
       donor: @donor,
       plan: plan
     )

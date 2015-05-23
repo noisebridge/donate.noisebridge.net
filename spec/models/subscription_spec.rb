@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-describe StripeSubscription, type: :model do
+describe Subscription, type: :model do
   let(:stripe_customer) { double(id: "stripe-1") }
   let(:donor) { create(:donor) }
-  let(:plan) { create(:stripe_plan, amount: 10_00) }
+  let(:plan) { create(:plan, amount: 10_00) }
 
   before do
     allow(Stripe::Customer).to receive(:create).and_return(stripe_customer)
