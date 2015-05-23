@@ -5,6 +5,9 @@ mkdir -p ~/noisebridge-donate-$(git rev-parse HEAD) && git archive master | tar 
 
 cd ~/noisebridge-donate-$(git rev-parse HEAD)
 
+# overwrite the production .env
+ln -fs ../production.env .env
+
 # Prepare the release
 bundle install && bin/rake assets:precompile
 
