@@ -46,8 +46,7 @@ jQuery(function($) {
         displayError($form, response.error);
         $form.find('button').prop('disabled', false);
       } else {
-        var token = response.id;
-        $form.append($('<input type="hidden" name="donor[stripe_token]" />').val(token));
+        $form.append($('<input type="hidden" name="donor[stripe_token]" />').val(response.id));
         $form.get(0).submit();
       }
     });

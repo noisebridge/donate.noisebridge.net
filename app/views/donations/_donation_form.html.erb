@@ -1,0 +1,19 @@
+<h3>Make a donation</h3>
+
+<%= render "notices" %>
+
+<div role="tabpanel" class="donations">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#credit-card" aria-controls="credit-card" role="tab" data-toggle="tab">Credit Card</a></li>
+    <li role="presentation"><a href="#bitcoin" aria-controls="bitcoin" role="tab" data-toggle="tab">Bitcoin</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="credit-card">
+      <%= render "credit_card" %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="bitcoin">
+      <%= render "bitcoin" %>
+    </div>
+  </div>
+</div>
