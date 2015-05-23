@@ -1,5 +1,7 @@
-class StripePlan < ActiveRecord::Base
+class Plan < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
+
+  self.table_name = 'stripe_plans'
 
   validates_presence_of :amount
 
