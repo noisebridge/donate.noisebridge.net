@@ -7,14 +7,6 @@ class DonationsController < ApplicationController
     @title = "Thanks!"
   end
 
-  def recurring
-    @title = "Recurring donations"
-  end
-
-  def dues
-    @title = "Dues"
-  end
-
   private
 
   def donor_params
@@ -22,7 +14,7 @@ class DonationsController < ApplicationController
   end
 
   def charge_params
-    params.require(:charge).permit(:amount)
+    params.require(:charge).permit(:amount, :recurring)
   end
 
   def plan_params

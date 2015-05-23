@@ -31,6 +31,8 @@ class Donor < ActiveRecord::Base
         email: self.email,
         card: self.stripe_token
     ).id
+  rescue Stripe::CardError, Stripe::InvalidRequestError => e
+    errors.add('stripe_token', e.message)
   end
 end
 
