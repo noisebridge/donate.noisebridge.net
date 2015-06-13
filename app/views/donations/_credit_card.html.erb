@@ -3,6 +3,10 @@
   <div class="form-group amount">
     <label for="charge[amount]">
       Donation
+
+      <%= link_to 'https://stripe.com' do %>
+        <span class="powered_by_stripe"></span>
+      <% end %>
     </label>
     <%= select_amount('charge[amount]') %>
   </div>
