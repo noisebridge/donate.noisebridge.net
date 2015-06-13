@@ -1,0 +1,3 @@
+test:
+  pre:
+    - mv .env .env.encrypted
