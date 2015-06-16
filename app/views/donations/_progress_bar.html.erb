@@ -1,4 +1,4 @@
-<h3><strong><%= number_to_currency(total_raised / 100, precision: 0) %></strong> raised of <strong>$20,000 goal</strong></h3>
+<h3><strong><%= number_to_currency(total_raised / 100, precision: 0) %></strong> raised of <strong><%= number_to_currency(donation_goal / 100, precision: 0) %></strong></h3>
 <div class="progress">
   <div class="progress-bar progress-bar-danger" role="progressbar" style="width: <%= percentage_raised %>%; min-width: 2%;"></div>
 </div>
