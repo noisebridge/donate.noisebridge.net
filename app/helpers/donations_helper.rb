@@ -1,6 +1,6 @@
 module DonationsHelper
   # All amounts in cents
-  DONATIONS_GOAL = 5_000_00
+  DONATIONS_GOAL = 20_000_00
 
   STANDARD_DONATION_AMOUNTS = [
     10,
