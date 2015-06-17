@@ -21,14 +21,16 @@ describe Charge, type: :model do
 
     it "creates a Stripe::Charge on create" do
       expect(charge.stripe_charge_id).to be_blank
-      expect(Stripe::Charge).to receive(:create).once.with(
-        amount: charge.amount,
-        currency: 'usd',
-        customer: donor.stripe_customer_id
-      ).and_return(stripe_charge)
+      expect(Stripe::Charge).to receive(:create) do |opts|
+        expect(opts[:amount]).to eq(charge.amount)
+        expect(opts[:currency]).to eq('usd')
+        expect(opts[:customer]).to eq(donor.stripe_customer_id.to_i)
+        stripe_charge
+      end
 
-      charge.save!
-      expect(charge.reload.stripe_charge_id).to be_present
+      expect {
+        charge.save!
+      }.to change { charge.stripe_charge_id }
     end
 
     it "returns a validation error if the Stripe::Charge fails" do
