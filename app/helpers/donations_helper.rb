@@ -20,6 +20,10 @@ module DonationsHelper
     Charge.order('amount DESC').limit(10)
   end
 
+  def donation_goal
+    DONATIONS_GOAL
+  end
+
   def total_raised
     Charge.sum(:amount)
   end
