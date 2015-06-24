@@ -25,6 +25,11 @@ The secrets for the development environment are kept encrypted in the `.env` fil
 
 To run the rails server locally with the secrets loaded use `foreman start web`
 
+### Running without secrets
+To run the rails server locally without the secrets simply `mv .env .env.foo`
+and run as normally `foreman start web`. Be mindful not to commit this move to
+git.
+
 ### Databases
 
 This setup assumes that you have a PostgreSQL user `noisebridge` locally who is the owner of `noisebridge_donate_development` and `noisebridge_donate_test` databases.
