@@ -32,16 +32,21 @@ body {
   font-family: 'Bitter', serif;
   display: flex;
   flex-direction: row;
-
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
 
-  h3 {
+  h1 {
     font-weight: bold;
+    max-width: 600px;
   }
 
-  .noisebridge_logo {
-    width: 120px;
+  a {
+    flex-shrink: 0;
+
+    .noisebridge_logo {
+      padding: 10px;
+      width: 120px;
+    }
   }
 }
 
