@@ -2,6 +2,7 @@ module ApplicationHelper
 
   GITHUB_URL = "https://github.com/patrickod/noisebridge-donate"
   LICENSE_URL = "https://gnu.org/licenses/agpl.html"
+  BITCOIN_ADDRESS = "1NrbWrxkdPuyPfFtc1W4AKNtkQMyXwAAJV"
 
   def license_link
     link_to("AGPL V3", LICENSE_URL)
@@ -9,6 +10,10 @@ module ApplicationHelper
 
   def github_link
     link_to("donate.noisebridge.net", GITHUB_URL)
+  end
+
+  def bitcoin_link
+    link_to(BITCOIN_ADDRESS, "bitcoin:#{BITCOIN_ADDRESS}")
   end
 
   def current_version_link
