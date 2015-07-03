@@ -29,7 +29,7 @@ module DonationsHelper
   end
 
   def percentage_raised
-    (total_raised / DONATIONS_GOAL) * 100
+    (total_raised / DONATIONS_GOAL.to_f) * 100
   end
 
   def amounts
