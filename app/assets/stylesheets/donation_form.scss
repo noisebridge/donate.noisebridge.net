@@ -43,13 +43,11 @@
       &.cc-number {
         flex-grow: 5;
       }
-
-      &.cc-exp, &.cc-cvc {
-        flex-grow: 1;
+      &.cc-exp {
+        flex-grow: 2;
       }
-
       &.cc-cvc {
-        max-width: 17%;
+        flex-grow: 1;
       }
     }
   }
