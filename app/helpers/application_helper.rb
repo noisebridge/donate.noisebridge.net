@@ -26,7 +26,7 @@ module ApplicationHelper
 
   def current_version_github_url
     if Rails.env.production?
-      "GITHUB_URL/commits/#{current_version}"
+      "#{GITHUB_URL}/commits/#{current_version}"
     else
       "#"
     end
