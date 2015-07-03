@@ -52,3 +52,37 @@ body {
   }
 
 }
+
+/* Responsive design tweaks */
+
+/* Narrow */
+@media only screen and (max-width: 480px) {
+  .container {
+    max-width: 400px;
+  }
+
+  .donation-header {
+    flex-direction: column;
+    text-align: center;
+
+    .noisebridge_logo {
+      width: 80px;
+    }
+  }
+}
+/* Medium */
+@media only screen and (min-width: 481px) and (max-width: 960px) {
+  .container {
+    max-width: 800px;
+  }
+
+  .donation-header {
+    flex-direction: column;
+    text-align: center;
+
+    .noisebridge_logo {
+      width: 100px;
+    }
+  }
+
+}
