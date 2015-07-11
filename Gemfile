@@ -15,6 +15,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'dotenv-rails'
 gem 'autoprefixer-rails'
+gem 'skylight'
 
 group :development, :test do
   gem 'spring'
