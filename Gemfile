@@ -5,7 +5,7 @@ source 'https://code.stripe.com'
 gem 'stripe', :source => 'https://code.stripe.com/'
 gem 'pg'
 
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.3'
 gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
