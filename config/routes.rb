@@ -7,4 +7,8 @@ Rails.application.routes.draw do
     resource :subscriptions, only: [:create]
     resource :charges, only: [:create]
   end
+
+  namespace :hooks do
+    resources :stripe, only: [:create]
+  end
 end
