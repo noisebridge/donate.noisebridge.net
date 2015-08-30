@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :donors
   root 'donations#index'
 
   get '/thanks', to: 'donations#thanks'

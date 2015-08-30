@@ -4,6 +4,7 @@ describe Donor, type: :model do
   let(:stripe_token) { 'tok_1234' }
 
   let(:email) { 'treasurer@noisebridge.net' }
+  let(:password) { "a" * 8 }
 
   it { is_expected.to validate_presence_of(:email) }
 
@@ -13,12 +14,12 @@ describe Donor, type: :model do
         email: email,
         card: stripe_token
       ).and_return(double(id: "stripe_customer_1"))
-      Donor.create!(email: email, stripe_token: stripe_token)
+      Donor.create!(email: email, stripe_token: stripe_token, password: password, password_confirmation: password)
     end
 
     it 'does not create when stripe_customer_id is set' do
       expect(Stripe::Customer).to_not receive(:create)
-      Donor.create!(email: email, stripe_customer_id: 'not-exist')
+      Donor.create!(email: email, stripe_customer_id: 'not-exist', password: password, password_confirmation: password)
     end
   end
 
