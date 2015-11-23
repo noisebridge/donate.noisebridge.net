@@ -13,6 +13,8 @@ class ChargesController < DonationsController
   private
 
   def create_subscription
+    return redirect_to root_url unless update_credit_card(donor_params[:stripe_token])
+
     plan = Plan.find_or_create_by!({
       amount: charge_params[:amount].to_i * 100
     })
