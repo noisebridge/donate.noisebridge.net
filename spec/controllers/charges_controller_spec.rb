@@ -5,7 +5,8 @@ describe ChargesController, type: :controller do
   let(:amount) { 10_00 }
   let(:email) { "treasurer@noisebridge.net" }
 
-  let(:stripe_customer) { double(id: 'customer-1') }
+  let(:stripe_sources) { double(create: true) }
+  let(:stripe_customer) { double(id: 'customer-1', sources: stripe_sources) }
   let(:stripe_charge) { double(id: 'charge-1') }
 
   before do
@@ -53,11 +54,8 @@ describe ChargesController, type: :controller do
   context 'creating Subscriptions' do
     before do
       allow(Stripe::Plan).to receive(:create)
-      allow_any_instance_of(Donor).to receive_message_chain(
-        :stripe_customer,
-        :subscriptions,
-        :create
-      ).and_return(stripe_subscription)
+      allow(stripe_customer).to receive_message_chain(:subscriptions, :create).
+        and_return(stripe_subscription)
     end
 
     let(:plan) { Plan.create(amount: 10_00) }

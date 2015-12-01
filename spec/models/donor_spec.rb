@@ -11,7 +11,6 @@ describe Donor, type: :model do
     it 'creates when no stripe_customer_id is set' do
       expect(Stripe::Customer).to receive(:create).once.with(
         email: email,
-        card: stripe_token
       ).and_return(double(id: "stripe_customer_1"))
       Donor.create!(email: email, stripe_token: stripe_token)
     end
@@ -37,6 +36,18 @@ describe Donor, type: :model do
 
     it "is their name when anonymous: false" do
       expect(mitch.name).to eq("Mitch Altman")
+    end
+  end
+
+  context "#create_payment_source" do
+    let(:donor) { create(:donor) }
+    let(:token) { "token_123" }
+
+    it "creates a new Stripe payment source" do
+      expect(donor).to receive_message_chain(:stripe_customer, :sources, :create).
+        with(source: token).
+        and_return(true)
+      donor.create_payment_source(token)
     end
   end
 
