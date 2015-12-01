@@ -13,6 +13,10 @@ class Donor < ActiveRecord::Base
     Stripe::Customer.retrieve(self.stripe_customer_id)
   end
 
+  def create_payment_source(token)
+    stripe_customer.sources.create(source: token)
+  end
+
   def name
     if anonymous?
       "Anonymous"
@@ -29,9 +33,8 @@ class Donor < ActiveRecord::Base
     return if self.stripe_customer_id.present?
     self.stripe_customer_id = Stripe::Customer.create(
         email: self.email,
-        card: self.stripe_token
     ).id
-  rescue Stripe::CardError, Stripe::InvalidRequestError => e
+  rescue Stripe::InvalidRequestError => e
     errors.add('stripe_token', e.message)
   end
 end

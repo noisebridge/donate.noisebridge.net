@@ -13,6 +13,8 @@ class ChargesController < DonationsController
   private
 
   def create_subscription
+    return redirect_to root_url unless update_credit_card(donor_params[:stripe_token])
+
     plan = Plan.find_or_create_by!({
       amount: charge_params[:amount].to_i * 100
     })
@@ -32,6 +34,8 @@ class ChargesController < DonationsController
 
 
   def create_charge
+    return redirect_to root_url unless update_credit_card(donor_params[:stripe_token])
+
     # HACK TODO: fix the dollars / cents thing
     @charge = @donor.charges.new({
       amount: charge_params[:amount].to_i * 100
@@ -45,4 +49,13 @@ class ChargesController < DonationsController
     end
   end
 
+  private
+
+  def update_credit_card(token)
+    @donor.create_payment_source(token)
+    true
+  rescue Stripe::CardError => exc
+    flash[:danger] = [exc.message] 
+    false
+  end
 end

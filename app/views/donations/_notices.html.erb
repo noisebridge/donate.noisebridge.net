@@ -1,16 +1,16 @@
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>" role="alert">
-    <% if value.is_a?(Array) %>
-      <ul>
+<div class="alerts">
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>" role="alert">
+      <% if value.is_a?(Array) %>
         <% value.each do |m| %>
-          <li><%= m %></li>
+          <%= m %>
         <% end %>
-      </ul>
-    <% else %>
-      <%= value %>
-    <% end %>
-  </div>
-<% end %>
+      <% else %>
+        <%= value %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 
 <script type="text/html" id="notice-template">
   <div class="alert alert-{{type}}" role="alert">

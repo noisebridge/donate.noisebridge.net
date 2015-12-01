@@ -5,7 +5,7 @@ jQuery(function($) {
 
   function displayError(form, error) {
     var template = _.template($("#notice-template").html());
-    form.prepend(template({
+    $('.alerts').prepend(template({
       type: 'danger',
       content: error.message
     }));
@@ -15,7 +15,7 @@ jQuery(function($) {
 
   function resetErrors(form) {
     form.find(".has-error").removeClass("has-error")
-    form.find(".alert").remove();
+    $('.alerts').empty();
   };
 
   // Allow for custom amounts when "Other" selected in donation amount dropdown
