@@ -30,6 +30,9 @@ class ChargesController < DonationsController
       flash[:danger] = @subscription.errors.full_messages
       redirect_to root_url
     end
+  rescue Stripe::CardError => exc
+    flash[:danger] = [exc.message] 
+    redirect_to root_url
   end
 
 
