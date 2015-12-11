@@ -31,7 +31,7 @@ class ChargesController < DonationsController
       redirect_to root_url
     end
   rescue Stripe::CardError => exc
-    flash[:danger] = [exc.message] 
+    flash[:danger] = [exc.message]
     redirect_to root_url
   end
 
@@ -58,7 +58,7 @@ class ChargesController < DonationsController
     @donor.create_payment_source(token)
     true
   rescue Stripe::CardError => exc
-    flash[:danger] = [exc.message] 
+    flash[:danger] = [exc.message]
     false
   end
 end

@@ -40,7 +40,8 @@ jQuery(function($) {
       number: $form.find(".cc-number").val(),
       cvc: $form.find(".cc-cvc").val(),
       exp_month: $form.find(".cc-exp").payment('cardExpiryVal').month,
-      exp_year: $form.find(".cc-exp").payment('cardExpiryVal').year
+      exp_year: $form.find(".cc-exp").payment('cardExpiryVal').year,
+      address_zip: $form.find(".cc-zip").val()
     }, function(status, response) {
       if (response.error) {
         displayError($form, response.error);
