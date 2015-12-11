@@ -10,11 +10,13 @@ class Donor < ActiveRecord::Base
   attr_accessor :stripe_token
 
   def stripe_customer
-    Stripe::Customer.retrieve(self.stripe_customer_id)
+    @stripe_customer ||= Stripe::Customer.retrieve(self.stripe_customer_id)
   end
 
   def create_payment_source(token)
-    stripe_customer.sources.create(source: token)
+    card = stripe_customer.sources.create(source: token)
+    stripe_customer.default_source = card.id
+    stripe_customer.save
   end
 
   def name
