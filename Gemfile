@@ -5,9 +5,9 @@ source 'https://code.stripe.com'
 gem 'stripe', :source => 'https://code.stripe.com/'
 gem 'pg'
 
-gem 'rails', '4.2.1'
+gem 'rails', '~> 4.2'
 gem 'sqlite3'
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 4.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
@@ -23,6 +23,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1'
   gem 'factory_girl_rails'
   gem 'guard-rspec', require: false
-  gem 'shoulda-matchers', require: false
+  gem 'shoulda-matchers'
   gem 'web-console', '~> 2.0'
 end
