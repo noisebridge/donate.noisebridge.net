@@ -5,8 +5,9 @@ describe ChargesController, type: :controller do
   let(:amount) { 10_00 }
   let(:email) { "treasurer@noisebridge.net" }
 
-  let(:stripe_sources) { double(create: true) }
-  let(:stripe_customer) { double(id: 'customer-1', sources: stripe_sources) }
+  let(:stripe_card) { double(id: "card-1") }
+  let(:stripe_sources) { double(create: stripe_card) }
+  let(:stripe_customer) { double(id: 'customer-1', sources: stripe_sources, "default_source=": true, save: true) }
   let(:stripe_charge) { double(id: 'charge-1') }
 
   before do

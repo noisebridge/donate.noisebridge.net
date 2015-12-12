@@ -44,9 +44,12 @@ describe Donor, type: :model do
     let(:token) { "token_123" }
 
     it "creates a new Stripe payment source" do
-      expect(donor).to receive_message_chain(:stripe_customer, :sources, :create).
+      customer = double(save: true, :"default_source=" => true)
+      expect(Stripe::Customer).to receive(:retrieve).
+        and_return(customer)
+      expect(customer).to receive_message_chain(:sources, :create).
         with(source: token).
-        and_return(true)
+        and_return(double(id: "card-1"))
       donor.create_payment_source(token)
     end
   end
