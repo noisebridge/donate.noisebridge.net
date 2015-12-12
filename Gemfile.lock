@@ -236,9 +236,9 @@ DEPENDENCIES
   jquery-rails
   pg
   pry
-  rails (= 4.2.1)
+  rails (~> 4.2)
   rspec-rails (~> 3.1)
-  sass-rails (~> 4.0.3)
+  sass-rails (~> 4.0)
   shoulda-matchers
   skylight
   spring
