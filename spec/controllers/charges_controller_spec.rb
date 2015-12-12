@@ -9,10 +9,12 @@ describe ChargesController, type: :controller do
   let(:stripe_sources) { double(create: stripe_card) }
   let(:stripe_customer) { double(id: 'customer-1', sources: stripe_sources, "default_source=": true, save: true) }
   let(:stripe_charge) { double(id: 'charge-1') }
+  let(:password) { "a" * 8 }
 
   before do
     allow(Stripe::Customer).to receive(:create).and_return(stripe_customer)
     allow(Stripe::Customer).to receive(:retrieve).and_return(stripe_customer)
+    allow(Donor).to receive(:generate_password).and_return(password)
   end
 
   context 'creating Charges' do
@@ -27,6 +29,8 @@ describe ChargesController, type: :controller do
       expect(Donor).to receive(:new).with(
         email: email,
         stripe_token: stripe_token,
+        password: password,
+        password_confirmation: password
       ).and_call_original
 
       post :create,
@@ -40,7 +44,9 @@ describe ChargesController, type: :controller do
       expect(Donor).to receive(:new).with(
         email: email,
         stripe_token: stripe_token,
-        anonymous: true
+        anonymous: true,
+        password: password,
+        password_confirmation: password
       ).and_call_original
 
       post :create,

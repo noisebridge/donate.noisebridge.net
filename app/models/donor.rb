@@ -1,4 +1,8 @@
 class Donor < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 
   has_many :charges, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
@@ -8,6 +12,10 @@ class Donor < ActiveRecord::Base
   validates_presence_of(:email, allow_blank?: false)
 
   attr_accessor :stripe_token
+
+  def self.generate_password
+    SecureRandom.hex(8)
+  end
 
   def stripe_customer
     @stripe_customer ||= Stripe::Customer.retrieve(self.stripe_customer_id)

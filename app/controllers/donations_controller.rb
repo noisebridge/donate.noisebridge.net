@@ -30,7 +30,8 @@ class DonationsController < ApplicationController
   end
 
   def create_donor
-    donor = Donor.new(donor_params)
+    password = Donor.generate_password
+    donor = Donor.new(donor_params.merge(password: password, password_confirmation: password))
     if !donor.save
       flash[:danger] = donor.errors.full_messages
       return redirect_to root_url
