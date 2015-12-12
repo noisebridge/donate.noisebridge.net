@@ -23,6 +23,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1'
   gem 'factory_girl_rails'
   gem 'guard-rspec', require: false
-  gem 'shoulda-matchers', require: false
+  gem 'shoulda-matchers'
   gem 'web-console', '~> 2.0'
 end
