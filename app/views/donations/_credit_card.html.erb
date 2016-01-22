@@ -17,11 +17,14 @@
     <input type="text" class="form-control cc-exp" data-stripe="exp" inputmode="numeric" placeholder="MM / YY">
     <input type="text" class="form-control cc-cvc" size="20" data-stripe="cvc" inputmode="numeric" placeholder="CVC" />
   </div>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" name="charge[recurring]"> Recurring donation on a monthly basis
-    </label>
-  </div>
+
+  <% if allow_recurring %>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="charge[recurring]"> Recurring donation on a monthly basis
+      </label>
+    </div>
+  <% end %>
 
   <!-- Donor information -->
   <div class="form-group">
@@ -43,6 +46,8 @@
       <input type="checkbox" name="donor[anonymous]"> I wish to be anonymous
     </label>
   </div>
+
+  <input type="hidden" value="<%= params[:project] %>" name="charge[tag]">
 
   <div class="form-group">
     <%= button_tag "Donate", {class: "btn btn-primary"} %>

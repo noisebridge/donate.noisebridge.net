@@ -11,21 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150523043432) do
+ActiveRecord::Schema.define(version: 20160122044601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "charges", force: true do |t|
+  create_table "charges", force: :cascade do |t|
     t.integer  "donor_id",         null: false
     t.integer  "amount",           null: false
     t.string   "stripe_charge_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "subscription_id"
+    t.string   "tag"
   end
 
-  create_table "donors", force: true do |t|
+  create_table "donors", force: :cascade do |t|
     t.string   "email",                                          null: false
     t.string   "stripe_customer_id",                             null: false
     t.datetime "created_at"
@@ -34,7 +35,7 @@ ActiveRecord::Schema.define(version: 20150523043432) do
     t.boolean  "anonymous",                      default: false
   end
 
-  create_table "stripe_plans", force: true do |t|
+  create_table "stripe_plans", force: :cascade do |t|
     t.string   "stripe_id"
     t.string   "name",       null: false
     t.integer  "amount",     null: false
@@ -44,7 +45,7 @@ ActiveRecord::Schema.define(version: 20150523043432) do
 
   add_index "stripe_plans", ["stripe_id"], name: "index_stripe_plans_on_stripe_id", unique: true, using: :btree
 
-  create_table "stripe_subscriptions", force: true do |t|
+  create_table "stripe_subscriptions", force: :cascade do |t|
     t.string   "stripe_status"
     t.datetime "cancellation_requested_at"
     t.datetime "cancelled_at"
