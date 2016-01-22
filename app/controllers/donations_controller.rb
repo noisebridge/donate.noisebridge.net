@@ -7,6 +7,10 @@ class DonationsController < ApplicationController
     @title = "Thanks!"
   end
 
+  def project
+    @name = params[:project]
+  end
+
   private
 
   def donor_params
@@ -14,7 +18,7 @@ class DonationsController < ApplicationController
   end
 
   def charge_params
-    params.require(:charge).permit(:amount, :recurring)
+    params.require(:charge).permit(:amount, :recurring, :tag)
   end
 
   def plan_params

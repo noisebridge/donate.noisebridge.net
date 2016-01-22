@@ -36,4 +36,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Fixes deprecation notice about default in upcoming Rails 5
+  config.active_support.test_order = :random
 end
