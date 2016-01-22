@@ -17,7 +17,7 @@ module DonationsHelper
   ]
 
   def top_ten_charges
-    Charge.order('amount DESC').limit(10)
+    Charge.where(tag: nil).order('amount DESC').limit(10)
   end
 
   def donation_goal

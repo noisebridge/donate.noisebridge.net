@@ -50,6 +50,15 @@ describe ChargesController, type: :controller do
       expect(assigns(:donor)).to be_anonymous
       expect(assigns(:charge)).to be_persisted
     end
+
+    it "allows for tagged charges" do
+      post :create,
+        donor: { email: email, stripe_token: stripe_token, anonymous: true },
+        charge: {amount: 10, tag: "bottle-light"},
+        format: :json
+      expect(assigns(:donor)).to be_anonymous
+      expect(assigns(:charge).tag).to eq("bottle-light")
+    end
   end
 
   context 'creating Subscriptions' do

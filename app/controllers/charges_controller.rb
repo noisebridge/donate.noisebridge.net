@@ -41,7 +41,8 @@ class ChargesController < DonationsController
 
     # HACK TODO: fix the dollars / cents thing
     @charge = @donor.charges.new({
-      amount: charge_params[:amount].to_i * 100
+      amount: charge_params[:amount].to_i * 100,
+      tag: charge_params[:tag]
     })
 
     if @charge.save
