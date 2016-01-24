@@ -7,10 +7,6 @@ class DonationsController < ApplicationController
     @title = "Thanks!"
   end
 
-  def project
-    @name = params[:project]
-  end
-
   private
 
   def donor_params

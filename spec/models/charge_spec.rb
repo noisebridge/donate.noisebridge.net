@@ -46,4 +46,24 @@ describe Charge, type: :model do
       charge.save!
     end
   end
+
+  context "project_totals" do
+    before do
+      allow(Stripe::Charge).to receive(:create).and_return(stripe_charge)
+      allow(stripe_charge).to receive(:id).and_return(*1..10)
+    end
+
+    let(:stripe_charge) { double }
+    let!(:charge_1) { create(:charge, amount: 100_00, tag: "project-1") }
+    let!(:charge_2) { create(:charge, amount: 200_00, tag: "project-1") }
+    let!(:charge_3) { create(:charge, amount: 200_00, tag: "project-2") }
+    let!(:charge_4) { create(:charge, amount: 200_00, tag: nil) } 
+
+    it "sums the Charge totals grouped by tag" do
+      totals = Charge.project_totals
+      expect(totals["project-1"]).to eq(charge_1.amount + charge_2.amount)
+      expect(totals["project-2"]).to eq(charge_3.amount)
+      expect(totals.keys).to match_array(["project-1", "project-2"])
+    end
+  end
 end

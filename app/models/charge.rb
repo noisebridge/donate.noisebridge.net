@@ -1,11 +1,17 @@
 class Charge < ActiveRecord::Base
   belongs_to(:donor)
 
+  scope :tagged, -> { where("tag IS NOT NULL") }
+
   validates_presence_of(:amount)
 
   validate :positive_charge_amount
 
   before_create :create_stripe_charge
+
+  def self.project_totals
+    self.tagged.group(:tag).sum(:amount)
+  end
 
   private
 
