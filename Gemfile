@@ -1,6 +1,4 @@
 source 'https://rubygems.org'
-source 'https://code.stripe.com'
-
 
 gem 'stripe', :source => 'https://code.stripe.com/'
 gem 'pg'
