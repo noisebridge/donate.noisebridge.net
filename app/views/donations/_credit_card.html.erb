@@ -47,7 +47,9 @@
     </label>
   </div>
 
-  <input type="hidden" value="<%= params[:id] %>" name="charge[tag]">
+  <% if params[:id].present? %>
+    <input type="hidden" value="<%= params[:id] %>" name="charge[tag]">
+  <% end %>
 
   <div class="form-group">
     <%= button_tag "Donate", {class: "btn btn-primary"} %>
