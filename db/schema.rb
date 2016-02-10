@@ -27,13 +27,38 @@ ActiveRecord::Schema.define(version: 20160122044601) do
   end
 
   create_table "donors", force: :cascade do |t|
-    t.string   "email",                                          null: false
-    t.string   "stripe_customer_id",                             null: false
+    t.string   "email",                                              null: false
+    t.string   "stripe_customer_id",                                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",               limit: 120
-    t.boolean  "anonymous",                      default: false
+    t.string   "name",                   limit: 120
+    t.boolean  "anonymous",                          default: false
+    t.string   "encrypted_password",                 default: "",    null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                      default: 0,     null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
   end
+
+  add_index "donors", ["email"], name: "index_donors_on_email", unique: true, using: :btree
+  add_index "donors", ["reset_password_token"], name: "index_donors_on_reset_password_token", unique: true, using: :btree
+
+  create_table "stripe_events", force: :cascade do |t|
+    t.string   "stripe_id",         null: false
+    t.string   "type",              null: false
+    t.string   "request"
+    t.json     "data"
+    t.datetime "processed_at"
+    t.datetime "remote_created_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stripe_events", ["stripe_id"], name: "index_stripe_events_on_stripe_id", unique: true, using: :btree
 
   create_table "stripe_plans", force: :cascade do |t|
     t.string   "stripe_id"
