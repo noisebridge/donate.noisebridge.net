@@ -1,0 +1,6 @@
+<h3>Current projects</h3>
+<ol>
+  <% projects.each do |project_name, total| %>
+      <li><%= project_name.titleize %> - <%= number_to_currency(total / 100, precision: 0) %></li>
+  <% end%>
+</ul>

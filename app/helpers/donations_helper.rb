@@ -16,8 +16,12 @@ module DonationsHelper
     [160, "Doing well"]
   ]
 
-  def recent_non_project_donations
-    Charge.where(tag: nil).order('created_at DESC').limit(5)
+  def recent_donations
+    Charge.all.order('created_at DESC').limit(5)
+  end
+
+  def projects
+    Charge.project_totals
   end
 
   def donation_goal
