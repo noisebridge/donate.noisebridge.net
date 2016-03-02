@@ -26,6 +26,6 @@ SecureHeaders::Configuration.default do |config|
     frame_ancestors: %w('none'),
     plugin_types: %w(application/x-shockwave-flash),
     block_all_mixed_content: true, # see [http://www.w3.org/TR/mixed-content/](http://www.w3.org/TR/mixed-content/)
-    report_uri: %w(https://example.com/uri-directive)
+    report_uri: %w(https://app.getsentry.com/api/68953/csp-report?sentry_version=5&sentry_key=e03db32ca8b543ffbf797c534d173035)
   }
 end
