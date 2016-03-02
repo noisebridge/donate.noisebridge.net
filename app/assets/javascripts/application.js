@@ -15,6 +15,7 @@
 //= require underscore
 //= require bootstrap
 //= require_tree .
+//= require jquery.payment.min
 
 
 // Change underscore to use non-ERB template syntax
