@@ -14,6 +14,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'dotenv-rails'
 gem 'autoprefixer-rails'
 gem 'skylight'
+gem 'sentry-raven'
 
 group :development, :test do
   gem 'spring'
