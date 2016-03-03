@@ -9,7 +9,7 @@ A really simple rails application to accept credit card donations for [Noisebrid
 ### Requirements
 
   * PostgreSQL
-  * Ruby 2.2.0
+  * Ruby 2.3.0
   * foreman `gem install foreman`
 
 If you have `rbenv` and `ruby-build` installed you should be able to do the following
