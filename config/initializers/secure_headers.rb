@@ -12,14 +12,14 @@ SecureHeaders::Configuration.default do |config|
 
     # directive values: these values will directly translate into source directives
     default_src: %w(https: 'self'),
-    frame_src: %w('self'),
+    frame_src: %w('self' js.stripe.com),
     connect_src: %w(wws:),
     font_src: %w('self' fonts.gstatic.com fonts.googleapis.com),
     img_src: %w('self'),
     media_src: %w('self'),
     object_src: %w('self'),
     script_src: %w('self' js.stripe.com),
-    style_src: %w('unsafe-inline'),
+    style_src: %w('self' fonts.googleapis.com),
     base_uri: %w('self'),
     child_src: %w('self'),
     form_action: %w('self' github.com),

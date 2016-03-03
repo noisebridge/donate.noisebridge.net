@@ -12,9 +12,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <script type="text/javascript">
+  <%= nonced_javascript_tag do %>
     Stripe.setPublishableKey("<%= Rails.application.secrets.stripe_api_key %>");
-  </script>
+  <% end %>
 </head>
 <body>
 
