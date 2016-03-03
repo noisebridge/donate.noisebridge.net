@@ -20,13 +20,18 @@
 @import url(https://fonts.googleapis.com/css?family=Bitter:400,700);
 
 body {
-  font-family: 'Bitter', serif;
+  font-family: 'Bitter', serif !important;
 }
 
 // main container body
 .container {
   margin: 30px 0px;
+
+  h3 {
+    font-family: 'Bitter', serif;
+  }
 }
+
 
 .donation-header {
   font-family: 'Bitter', serif;
@@ -47,7 +52,6 @@ body {
 
 .donation-progress {
   h3 {
-    font-family: 'Bitter', serif;
     text-align: center;
   }
 

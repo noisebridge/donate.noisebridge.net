@@ -1,6 +1,0 @@
-<h3>Top supporters</h3>
-<ol>
-  <% top_ten_charges.each do |charge| %>
-    <li><%= charge.donor.name %> - <%= number_to_currency(charge.amount / 100, precision: 0) %></li>
-  <% end%>
-</ol>

@@ -1,0 +1,10 @@
+<h3>Recent donations</h3>
+<ol>
+  <% recent_donations.each do |charge| %>
+    <% if charge.tag.present? %>
+        <li><%= charge.donor.name %> - <%= number_to_currency(charge.amount / 100, precision: 0) %> towards <%= charge.tag.titleize %></li>
+      <% else %>
+        <li><%= charge.donor.name %> - <%= number_to_currency(charge.amount / 100, precision: 0) %></li>
+      <% end %>
+  <% end%>
+</ol>

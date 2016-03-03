@@ -10,11 +10,19 @@
     <%= render "progress_bar" %>
   </div>
 
-  <div class="col-md-4 col-md-offset-2 donation-form">
-    <%= render "donation_form" %>
-  </div>
+  <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-4 col-md-offset-2 donation-form">
+      <%= render "donation_form" %>
+    </div>
 
-  <div class="col-md-4 donation-form">
-    <%= render "leaderboard" %>
+    <div class="col-md-4 clo-md-offset-2 summary">
+      <div class="table-container">
+        <%= render "recent_donations" %>
+      </div>
+
+      <div class="table-container">
+        <%= render "current_projects" %>
+      </div>
+    </div>
   </div>
 </div>
