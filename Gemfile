@@ -1,22 +1,23 @@
 source 'https://rubygems.org'
 
-gem 'stripe', :source => 'https://code.stripe.com/'
+gem 'autoprefixer-rails'
+gem 'dotenv-rails'
+gem 'jquery-rails'
 gem 'pg'
-
 gem 'rails', '5.0.0.beta3'
 gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'jquery-rails'
-gem 'dotenv-rails'
-gem 'autoprefixer-rails'
-gem 'skylight'
-gem 'sentry-raven'
 gem 'secure_headers'
+gem 'sentry-raven'
+gem 'sentry-raven'
+gem 'sidekiq'
+gem 'skylight'
+gem 'stripe', :source => 'https://code.stripe.com/'
+gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
-  gem 'spring'
-  gem 'pry'
   gem 'foreman'
+  gem 'pry'
+  gem 'spring'
 end
 
 group :development do
@@ -27,6 +28,6 @@ group :test do
   gem 'rails-controller-testing'
   gem 'factory_girl_rails'
   gem 'guard-rspec', require: false
-  gem 'shoulda-matchers'
   gem 'rspec-rails', '~> 3.1'
+  gem 'shoulda-matchers'
 end
