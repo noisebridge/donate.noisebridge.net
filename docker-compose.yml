@@ -2,13 +2,19 @@ bundler_cache:
   image: alpine:3.1
   command: echo
   volumes:
-    - /bundler_cache
+    - /bundle
+db:
+  image: postgres:9.4.1
+  ports:
+    - "5432:5432"
 
 web:
-  image: donate/latest
+  build: .
   command: rails server --port 3000 --binding 0.0.0.0
   ports:
     - "3000:3000"
+  links:
+    - db
   volumes:
     - ".:/srv/donate.noisebridge.net"
   volumes_from: 
