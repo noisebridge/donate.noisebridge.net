@@ -1,4 +1,4 @@
-class Plan < ActiveRecord::Base
+class Plan < ApplicationRecord
   include ActionView::Helpers::NumberHelper
 
   self.table_name = 'stripe_plans'

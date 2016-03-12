@@ -1,4 +1,4 @@
-class Donor < ActiveRecord::Base
+class Donor < ApplicationRecord
 
   has_many :charges, dependent: :destroy
   has_many :subscriptions, dependent: :destroy

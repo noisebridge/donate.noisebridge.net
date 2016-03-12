@@ -1,6 +1,6 @@
 class ChargesController < DonationsController
 
-  before_filter :find_or_create_donor
+  before_action :find_or_create_donor
 
   def create
     if charge_params[:recurring] == "on"

@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 gem 'stripe', :source => 'https://code.stripe.com/'
 gem 'pg'
 
-gem 'rails', '~> 4.2.5.1'
-gem 'sass-rails', '~> 4.0'
+gem 'rails', '5.0.0.beta3'
+gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'dotenv-rails'
@@ -24,6 +24,7 @@ group :development do
 end
 
 group :test do
+  gem 'rails-controller-testing'
   gem 'factory_girl_rails'
   gem 'guard-rspec', require: false
   gem 'shoulda-matchers'

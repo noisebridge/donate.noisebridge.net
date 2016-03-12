@@ -1,4 +1,4 @@
-class Charge < ActiveRecord::Base
+class Charge < ApplicationRecord
   belongs_to(:donor)
 
   scope :tagged, -> { where("tag IS NOT NULL") }
