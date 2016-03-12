@@ -59,10 +59,5 @@ module DonationsHelper
   def standard_donation_amounts
     STANDARD_DONATION_AMOUNTS
   end
-
-  def paypal_donation_link(amount)
-    link_to "#{number_to_currency(amount, precision: 0)} / month",
-      "https://www.paypal.com/subscriptions/business=treasurer@noisebridge.net&item_name=Noisebridge%20Monthly%20Donation%20%28Affiliate%20Member%29&cy_code=USD&a3=#{amount}&p3=1&t3=M&src=1", target: "_blank"
-  end
 end
 
