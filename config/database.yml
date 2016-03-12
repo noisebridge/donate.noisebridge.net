@@ -6,14 +6,15 @@
 #
 default: &default
   adapter: postgresql
-  username: noisebridge
+  username: postgres
   encoding: unicode
   pool: 5
   timeout: 5000
+  host: <%= ENV['DOCKER_POSTGRESQL_HOST'] || '127.0.0.1' %>
+  port: <%= ENV['DOCKER_POSTGRESQL_PORT'] || 5432 %>
 
 development:
   <<: *default
-  password: noisebridge
   database: noisebridge_donate_development
 
 # Warning: The database defined as "test" will be erased and
@@ -21,7 +22,6 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  password: noisebridge
   database: noisebridge_donate_test
 
 production:

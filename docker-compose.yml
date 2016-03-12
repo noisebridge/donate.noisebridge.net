@@ -15,6 +15,9 @@ web:
     - "3000:3000"
   links:
     - db
+  environment:
+    DOCKER_POSTGRESQL_HOST: db
+    DOCKER_POSTGRESQL_PORT: 5432
   volumes:
     - ".:/srv/donate.noisebridge.net"
   volumes_from: 
