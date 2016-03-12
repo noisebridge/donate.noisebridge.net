@@ -30,8 +30,15 @@ describe ChargesController, type: :controller do
       ).and_call_original
 
       post :create,
-        donor: {email: email, stripe_token: stripe_token},
-        charge: {amount: 10},
+        params: {
+          donor: {
+            email: email,
+            stripe_token: stripe_token
+          },
+          charge: {
+            amount: 10
+          }
+        },
         format: :json
       expect(assigns(:charge)).to be_persisted
     end
@@ -46,8 +53,10 @@ describe ChargesController, type: :controller do
       end.and_call_original
 
       post :create,
-        donor: {email: email, stripe_token: stripe_token, anonymous: true},
-        charge: {amount: 10},
+        params: {
+          donor: { email: email, stripe_token: stripe_token, anonymous: true },
+          charge: { amount: 10 },
+        },
         format: :json
       expect(assigns(:donor)).to be_anonymous
       expect(assigns(:charge)).to be_persisted
@@ -55,8 +64,17 @@ describe ChargesController, type: :controller do
 
     it "allows for tagged charges" do
       post :create,
-        donor: { email: email, stripe_token: stripe_token, anonymous: true },
-        charge: {amount: 10, tag: "bottle-light"},
+      params: {
+        donor: {
+          email: email,
+          stripe_token: stripe_token,
+          anonymous: true
+          },
+          charge: {
+            amount: 10,
+            tag: "bottle-light"
+          }
+        },
         format: :json
       expect(assigns(:donor)).to be_anonymous
       expect(assigns(:charge).tag).to eq("bottle-light")
@@ -79,8 +97,16 @@ describe ChargesController, type: :controller do
       }).and_return(plan)
 
       post :create,
-        donor: {email: email, stripe_token: stripe_token},
-        charge: {amount: 10, recurring: 'on'},
+        params: {
+          donor: {
+            email: email,
+            stripe_token: stripe_token
+          },
+          charge: {
+            amount: 10,
+            recurring: 'on'
+          }
+        },
         format: :json
 
       expect(assigns(:subscription)).to be_persisted
