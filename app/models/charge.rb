@@ -31,6 +31,6 @@ class Charge < ApplicationRecord
     ).id
   rescue Stripe::CardError => exc
     errors.add(:card, exc.message)
-    false
+    throw(:abort)
   end
 end
