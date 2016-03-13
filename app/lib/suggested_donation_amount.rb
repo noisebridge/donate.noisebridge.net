@@ -2,11 +2,11 @@ class SuggestedDonationAmount
 
   SUGGESTED_AMOUNTS = {
     laser: [
-      20,
-      50,
-      100,
+      1000,
       500,
-      1000
+      100,
+      50,
+      20,
     ],
     default: [
       10,
