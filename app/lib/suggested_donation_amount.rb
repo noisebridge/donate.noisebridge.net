@@ -18,7 +18,8 @@ class SuggestedDonationAmount
   }
 
   def self.for_project(name)
+    return SUGGESTED_AMOUNTS[:default] unless name.present?
     SUGGESTED_AMOUNTS[name.to_sym] ||
-      SUGGESTED_AMOUNTS[:default] 
+      SUGGESTED_AMOUNTS[:default]
   end
 end
