@@ -1,9 +1,11 @@
-<h3>Donate to project <%= @name.titleize %> </h3>
+<% unless @should_render_partial %>
+  <h3>Donate to project <%= @name.titleize %> </h3>
+<% end %>
 
 <%= render "notices" %>
 
 <div role="tabpanel" class="donations">
   <div class="tab-content">
-    <%= render "credit_card", allow_recurring: false %>
+    <%= render "credit_card", allow_recurring: false, project_name: @name %>
   </div>
 </div>

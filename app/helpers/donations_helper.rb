@@ -36,8 +36,8 @@ module DonationsHelper
     (total_raised / DONATIONS_GOAL.to_f) * 100
   end
 
-  def amounts
-    STANDARD_DONATION_AMOUNTS.map do |i|
+  def amounts(name = nil)
+    SuggestedDonationAmount.for_project(name).map do |i|
       [number_to_currency(i, precision: 0), i]
     end + [["Other", "other"]]
   end
@@ -49,7 +49,7 @@ module DonationsHelper
   end
 
   def select_amount(name)
-    select_tag(name, options_for_select(amounts, params[:amount]), class: 'form-control')
+    select_tag(name, options_for_select(amounts(@name), params[:amount]), class: 'form-control')
   end
 
   def dues_select_amount(name)
