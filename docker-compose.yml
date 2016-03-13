@@ -5,21 +5,40 @@ bundler_cache:
     - /bundle
 db:
   image: postgres:9.4.1
-  ports:
-    - "5432:5432"
+  expose:
+    - "5432"
+
+redis:
+  image: redis:2.8
+  expose:
+    - "6379"
+
+donate:
+  build: .
+  environment:
+    DOCKER_POSTGRESQL_HOST: db
+    DOCKER_POSTGRESQL_PORT: 5432
+    DOCKER_REDIS_HOST: redis
+    DOCKER_REDIS_PORT: 6379
+  volumes:
+    - ".:/srv/donate.noisebridge.net"
 
 web:
-  build: .
+  extends: donate
   command: rails server --port 3000 --binding 0.0.0.0
   ports:
     - "3000:3000"
   links:
     - db
-  environment:
-    DOCKER_POSTGRESQL_HOST: db
-    DOCKER_POSTGRESQL_PORT: 5432
-  volumes:
-    - ".:/srv/donate.noisebridge.net"
+    - redis
   volumes_from: 
     - bundler_cache
-    
+
+worker:
+  extends: donate
+  command: sidekiq
+  links:
+    - db
+    - redis
+  volumes_from: 
+    - bundler_cache
