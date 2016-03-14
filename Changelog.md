@@ -1,3 +1,11 @@
+## 2016-03-12 ##
+
+Remove PayPal as a donation method. We want to deprecate PayPal donations entirely and the first step of doing so is to stop advertising them to new donors.
+
+Update to Rails 5.0.0-beta3. Fix a bunch of deprecation warnings that came with this. 
+
+Introduced project-page partials which allow optional content to be rendered alongside the donation form.
+
 ## 2016-03-02 ##
 
 Adjustments to the `SecureHeaders` configuration such that the CSP reports are resolved. 
