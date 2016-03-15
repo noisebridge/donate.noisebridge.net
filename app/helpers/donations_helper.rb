@@ -24,7 +24,7 @@ module DonationsHelper
     Charge.project_totals
   end
 
-  def donation_goal
+  def fundraising_goal
     DONATIONS_GOAL
   end
 
