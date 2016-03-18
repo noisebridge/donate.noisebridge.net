@@ -1,10 +1,10 @@
-<h3><strong><%= number_to_currency(total_raised / 100, precision: 0) %></strong> raised of <strong><%= number_to_currency(fundraising_goal / 100, precision: 0) %> goal</strong></h3>
+<h3><strong><%= number_to_currency(amount / 100, precision: 0) %></strong> raised of <strong><%= number_to_currency(total / 100, precision: 0) %> goal</strong></h3>
 <div class="progress">
   <div class="progress-bar progress-bar-danger" role="progressbar"></div>
 </div>
 <%= nonced_style_tag do %>
   .progress .progress-bar {
-    width: <%= ((total_raised / fundraising_goal.to_f) * 100).round(2) %>%;
+    width: <%= ((amount / total.to_f) * 100).round(2) %>%;
     min-width: 2%;
   }
 <% end %>

@@ -9,7 +9,7 @@
 
 <% if @project.has_fundraising_goal? %>
   <div class="col-md-6 col-md-offset-3 donation-progress">
-    <%= render "progress_bar", locals: { total_raised: @project.amount_raised, fundraising_goal: @project.fundraising_goal } %>
+    <%= render partial: "progress_bar", locals: { amount: @project.amount_raised, total: @project.fundraising_goal } %>
   </div>
 <% end %>
 
