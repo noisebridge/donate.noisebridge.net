@@ -17,7 +17,7 @@
       <tbody>
         <% @project_totals.each do |project, amount| %>
           <tr>
-            <td><%= link_to project.titleize, project_path(project) %></td>
+            <td><%= project.titleize %></td>
             <td><%= number_to_currency(amount / 100.0) %></td>
           </tr>
         <% end %>
