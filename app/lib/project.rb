@@ -30,7 +30,7 @@ class Project
         return new(name, params)
       end
     end
-    return new(PROJECTS[:default])
+    return new(name, PROJECTS[:default])
   end
 
   def initialize(name, params)
