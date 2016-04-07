@@ -1,4 +1,4 @@
-module ReceiptMailer < ActionMailer
+class ReceiptMailer < ActionMailer
 
   def notify_of_donation(email, amount)
     @amount = amount
