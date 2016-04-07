@@ -46,7 +46,7 @@ class StripeEvent < ApplicationRecord
   private def queue_email_receipt_mail
     email = Donor.find_by(stripe_customer_id: customer_id).email
     amount = body['data']['object']['amount']
-    ReceiptEmailWorker.perform_async(email: email, amount: amount)
+    ReceiptEmailWorker.perform_async(email, amount)
   end
 
   private def processed?

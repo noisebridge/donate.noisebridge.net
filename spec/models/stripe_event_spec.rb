@@ -83,7 +83,7 @@ RSpec.describe StripeEvent do
 
       it "queues an email recipt email" do
         expect(ReceiptEmailWorker).to receive(:perform_async).
-          with(email: donor.email, amount: 100_00).
+          with(donor.email, 100_00).
           and_return(true)
         expect(event.process).to eq(true)
       end
