@@ -5,6 +5,17 @@ RSpec.describe StripeEvent do
   it { is_expected.to validate_presence_of(:stripe_id) }
   it { is_expected.to validate_presence_of(:body) }
 
+  context ".record_and_process" do
+    let(:event) { create(:stripe_event) }
+
+    it "creates an event and processes it" do
+      expect(subject.class).to receive(:create!).and_return(event)
+      expect(event).to receive(:process).and_return(true)
+
+      subject.class.record_and_process(event)
+    end
+  end
+
   context "#mark_processed!" do
     let(:event) { StripeEvent.create!(stripe_id: "foo", body: {key: "value"}) }
 

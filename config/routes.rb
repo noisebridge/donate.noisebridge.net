@@ -9,4 +9,8 @@ Rails.application.routes.draw do
     resource :subscriptions, only: [:create]
     resource :charges, only: [:create]
   end
+
+  namespace :api do
+    resource :stripe_events, only: [:create]
+  end
 end

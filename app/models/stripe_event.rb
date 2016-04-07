@@ -8,7 +8,7 @@ class StripeEvent < ApplicationRecord
     create!(
       body: stripe_event.as_json,
       stripe_id: stripe_event.id
-    )
+    ).process
   end
 
   def process
