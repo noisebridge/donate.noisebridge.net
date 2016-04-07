@@ -29,6 +29,11 @@ class Donor < ApplicationRecord
     end
   end
 
+  def first_name
+    return if anonymous?
+    name.split(" ").first
+  end
+
   private
 
   def create_stripe_customer
