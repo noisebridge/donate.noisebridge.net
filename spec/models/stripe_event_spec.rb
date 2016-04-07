@@ -13,4 +13,53 @@ RSpec.describe StripeEvent do
     end
   end
 
+  context "#remote_created_at" do
+    let(:event) {
+      subject.class.new(
+        body: {
+          'created': 0
+        }
+      )
+    }
+
+    it "returns the remote event created timestamp" do
+      expect(event.remote_created_at).to eq(Time.at(0))
+    end
+  end
+
+  context "#type" do
+    let(:event) {
+      subject.class.new(body: { "type": "foo.bar"} )
+    }
+
+    it "returns the event type" do
+      expect(event.type).to eq("foo.bar")
+    end
+  end
+
+  context "#process" do
+    context "with a charge.succeeded" do
+      let(:donor) { create(:donor) }
+      let(:event) {
+        subject.class.new(
+          body: {
+            type: "charge.succeeded",
+            data: {
+              object: {
+                customer: donor.stripe_customer_id,
+                amount: 100_00
+              }
+            }
+          }
+        )
+      }
+
+      it "queues an email recipt email" do
+        expect(ReceiptEmailWorker).to receive(:perform_async).
+          with(email: donor.email, amount: 100_00).
+          and_return(true)
+        expect(event.process).to eq(true)
+      end
+    end
+  end
 end
