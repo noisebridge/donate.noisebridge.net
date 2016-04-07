@@ -39,6 +39,19 @@ describe Donor, type: :model do
     end
   end
 
+  context "#first_name" do
+    let(:anonymous) { create(:donor, anonymous: true, name: "Mitch Altman") }
+    let(:mitch) { create(:donor, anonymous: false, name: "Mitch Altman") }
+
+    it "is blank when anonymous" do
+      expect(anonymous.first_name).to be_blank
+    end
+
+    it "returns first name" do
+     expect(mitch.first_name).to eq("Mitch")
+    end
+  end
+
   context "#create_payment_source" do
     let(:donor) { create(:donor) }
     let(:token) { "token_123" }
