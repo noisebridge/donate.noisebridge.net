@@ -5,13 +5,18 @@ class StripeEvent < ApplicationRecord
   validates_presence_of :stripe_id, :body
 
   def self.record_and_process(stripe_event)
-    create!(
-      body: stripe_event.as_json,
-      stripe_id: stripe_event.id
-    ).process
+    if find_by(stripe_id: stripe_event.id)
+      find_by(stripe_id: stripe_event.id)
+    else
+      create!(
+        stripe_id: stripe_event.id,
+        body: stripe_event.as_json
+      )
+    end.process
   end
 
   def process
+    return if processed?
     if should_email_receipt?
       queue_email_receipt_mail
     end
@@ -42,5 +47,9 @@ class StripeEvent < ApplicationRecord
     email = Donor.find_by(stripe_customer_id: customer_id).email
     amount = body['data']['object']['amount']
     ReceiptEmailWorker.perform_async(email: email, amount: amount)
+  end
+
+  private def processed?
+    processed_at.present?
   end
 end

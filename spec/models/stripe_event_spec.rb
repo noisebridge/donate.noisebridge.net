@@ -6,13 +6,21 @@ RSpec.describe StripeEvent do
   it { is_expected.to validate_presence_of(:body) }
 
   context ".record_and_process" do
-    let(:event) { create(:stripe_event) }
+    let!(:event) { create(:stripe_event) }
 
     it "creates an event and processes it" do
-      expect(subject.class).to receive(:create!).and_return(event)
-      expect(event).to receive(:process).and_return(true)
+      expect_any_instance_of(subject.class).to receive(:process).and_return(true)
 
-      subject.class.record_and_process(event)
+      expect {
+        subject.class.record_and_process(event)
+      }.to change(StripeEvent, :count).by(1)
+    end
+
+    it "does not create duplicate records" do
+      expect {
+        subject.class.record_and_process(event)
+        subject.class.record_and_process(event)
+      }.to change(StripeEvent, :count).by(1)
     end
   end
 
@@ -64,6 +72,14 @@ RSpec.describe StripeEvent do
           }
         )
       }
+
+      context "with an aleady processed event" do
+        let(:event) { create(:stripe_event, processed_at: 2.days.ago) }
+
+        it "does nothing" do
+          expect(event.process).to eq(nil)
+        end
+      end
 
       it "queues an email recipt email" do
         expect(ReceiptEmailWorker).to receive(:perform_async).
