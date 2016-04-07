@@ -15,6 +15,7 @@ class StripeEvent < ApplicationRecord
     if should_email_receipt?
       queue_email_receipt_mail
     end
+    mark_processed!
   end
 
   def type

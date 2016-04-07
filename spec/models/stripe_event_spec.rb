@@ -52,7 +52,7 @@ RSpec.describe StripeEvent do
     context "with a charge.succeeded" do
       let(:donor) { create(:donor) }
       let(:event) {
-        subject.class.new(
+        build(:stripe_event,
           body: {
             type: "charge.succeeded",
             data: {
@@ -70,6 +70,13 @@ RSpec.describe StripeEvent do
           with(email: donor.email, amount: 100_00).
           and_return(true)
         expect(event.process).to eq(true)
+      end
+
+      it "marks as processed!" do
+        event = create(:stripe_event)
+        expect {
+          event.process
+        }.to change { event.reload.processed_at }
       end
     end
   end
