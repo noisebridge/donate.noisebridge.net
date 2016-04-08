@@ -46,7 +46,11 @@ class StripeEvent < ApplicationRecord
   private def queue_email_receipt_mail
     email = Donor.find_by(stripe_customer_id: customer_id).email
     amount = body['data']['object']['amount']
-    ReceiptEmailWorker.perform_async(email, amount)
+    ReceiptMailer.delay.notify_of_donation(email: email, amount: amount, recurring: recurring?)
+  end
+
+  private def recurring?
+    body['data']['object']['invoice'].present?
   end
 
   private def processed?

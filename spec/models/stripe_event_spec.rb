@@ -82,8 +82,8 @@ RSpec.describe StripeEvent do
       end
 
       it "queues an email recipt email" do
-        expect(ReceiptEmailWorker).to receive(:perform_async).
-          with(donor.email, 100_00).
+        expect(ReceiptMailer).to receive_message_chain(:delay, :notify_of_donation).
+          with(email: donor.email, amount: 100_00, recurring: false).
           and_return(true)
         expect(event.process).to eq(true)
       end
@@ -94,6 +94,19 @@ RSpec.describe StripeEvent do
           event.process
         }.to change { event.reload.processed_at }
       end
+    end
+  end
+
+  context "#recurring?" do
+    let!(:recurring) { create(:stripe_event, data: { object: { invoice: "invoice-1" } }) }
+    let!(:once_off) { create(:stripe_event) }
+
+    it "returns true if the charge is associated with an invoice" do
+      expect(recurring.recurring?).to eq(true)
+    end
+
+    it "returns false if the charge is not associated with an invoice" do
+      expect(once_off.recurring?).to eq(false)
     end
   end
 end
