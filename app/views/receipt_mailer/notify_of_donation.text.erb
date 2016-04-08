@@ -1,7 +1,7 @@
 Dear <%= @donor.first_name || "there" %>,
 
-Your recurring donation of <%= number_to_currency(@amount / 100) %> was
-successfully received today. Your ongoing support is immensely appreciated by
+Your<%= " recurring" if @recurring %> donation of <%= number_to_currency(@amount / 100) %> was
+successfully received today. Your<%= " recurring" if @recurring %> ongoing support is immensely appreciated by
 the Noisebridge community and helps us continue our mission of providing
 open-access technical education to all.
 
