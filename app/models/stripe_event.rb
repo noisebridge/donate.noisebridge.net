@@ -35,6 +35,12 @@ class StripeEvent < ApplicationRecord
     update_attributes!(processed_at: Time.zone.now)
   end
 
+  def recurring?
+    body['data']['object']['invoice'].present?
+  rescue
+    false
+  end
+
   private def should_email_receipt?
     type == CHARGE_SUCCEEDED
   end
@@ -47,10 +53,6 @@ class StripeEvent < ApplicationRecord
     email = Donor.find_by(stripe_customer_id: customer_id).email
     amount = body['data']['object']['amount']
     ReceiptMailer.delay.notify_of_donation(email: email, amount: amount, recurring: recurring?)
-  end
-
-  private def recurring?
-    body['data']['object']['invoice'].present?
   end
 
   private def processed?

@@ -98,7 +98,7 @@ RSpec.describe StripeEvent do
   end
 
   context "#recurring?" do
-    let!(:recurring) { create(:stripe_event, data: { object: { invoice: "invoice-1" } }) }
+    let!(:recurring) { create(:stripe_event, body: { data: { object: { invoice: "invoice-1" } } }) }
     let!(:once_off) { create(:stripe_event) }
 
     it "returns true if the charge is associated with an invoice" do
