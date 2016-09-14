@@ -1,6 +1,6 @@
 # Noisebridge-donate
 
-[![Circle CI](https://circleci.com/gh/patrickod/noisebridge-donate/tree/master.svg?style=svg)](https://circleci.com/gh/patrickod/noisebridge-donate/tree/master)
+[![CircleCI](https://circleci.com/gh/noisebridge/donate.noisebridge.net/tree/master.svg?style=svg)](https://circleci.com/gh/noisebridge/donate.noisebridge.net/tree/master)
 
 A really simple rails application to accept credit card donations for [Noisebridge](https://noisebridge.net)
 
