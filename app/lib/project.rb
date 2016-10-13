@@ -1,5 +1,14 @@
 class Project
   PROJECTS = {
+    stickers: {
+      suggested_donation_amounts: [
+        5,
+        10,
+        25,
+        50,
+        100,
+      ],
+    },
     laser: {
       suggested_donation_amounts: [
         1000,
