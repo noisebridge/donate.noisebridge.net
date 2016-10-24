@@ -44,13 +44,11 @@ describe ChargesController, type: :controller do
     end
 
     it 'allows for anonymous donations' do
-      expect(Donor).to receive(:new) do |params| 
-        expect(params.to_h).to eq({
-          email: email,
-          stripe_token: stripe_token,
-          anonymous: "true"
-        })
-      end.and_call_original
+      expect(Donor).to receive(:new).with({
+        email: email,
+        stripe_token: stripe_token,
+        anonymous: "true"
+      }).and_call_original
 
       post :create,
         params: {
@@ -114,4 +112,3 @@ describe ChargesController, type: :controller do
     end
   end
 end
-

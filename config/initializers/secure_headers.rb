@@ -12,7 +12,6 @@ SecureHeaders::Configuration.default do |config|
 
     # directive values: these values will directly translate into source directives
     default_src: %w(https: 'self'),
-    frame_src: %w('self' js.stripe.com),
     connect_src: %w(wws:),
     font_src: %w('self' fonts.gstatic.com fonts.googleapis.com),
     img_src: %w('self'),
@@ -21,7 +20,7 @@ SecureHeaders::Configuration.default do |config|
     script_src: %w('self' js.stripe.com),
     style_src: %w('self' fonts.googleapis.com),
     base_uri: %w('self'),
-    child_src: %w('self'),
+    child_src: %w('self' js.stripe.com),
     form_action: %w('self' github.com),
     frame_ancestors: %w('none'),
     plugin_types: %w(application/x-shockwave-flash),
