@@ -1,5 +1,6 @@
 class SuggestedDonationAmount
 
+  ### Amounts in whole dollar USD
   SUGGESTED_AMOUNTS = {
     laser: [
       1000,
@@ -7,6 +8,13 @@ class SuggestedDonationAmount
       100,
       50,
       20,
+    ],
+    stickers: [
+      5,
+      10,
+      25,
+      50,
+      100,
     ],
     default: [
       10,
