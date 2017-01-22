@@ -16,8 +16,10 @@
 //= require bootstrap
 //= require_tree .
 
-// Google fonts
-@import url(https://fonts.googleapis.com/css?family=Bitter:400,700);
+@font-face {
+    font-family: 'Bitter';
+    src: font-url('Bitter-Regular.ttf') format('truetype');
+}
 
 body {
   font-family: 'Bitter', serif !important;
@@ -43,7 +45,6 @@ body {
 
   h3 {
     font-weight: bold;
-    margin: 0;
   }
 
   .noisebridge_logo {
@@ -103,3 +104,4 @@ body {
 .row:not(:first-child) {
   margin-top: 25px;
 }
+
