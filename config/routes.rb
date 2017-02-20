@@ -12,5 +12,6 @@ Rails.application.routes.draw do
 
   namespace :api do
     resource :stripe_events, only: [:create]
+    resource :paypal_notifications, only: [:create]
   end
 end
