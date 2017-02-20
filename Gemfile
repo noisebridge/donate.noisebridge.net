@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'autoprefixer-rails'
 gem 'dotenv-rails'
+gem 'httparty'
 gem 'jquery-rails'
 gem 'pg'
 gem 'rails', '~> 5.0.0'
