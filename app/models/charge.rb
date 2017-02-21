@@ -10,22 +10,20 @@ class Charge < ApplicationRecord
   before_create :create_stripe_charge
 
   def self.project_totals
-    self.tagged.group(:tag).sum(:amount)
+    tagged.group(:tag).sum(:amount)
   end
 
   private
 
   def positive_charge_amount
-    if amount <= 0
-      errors.add(:amount, "must be positive")
-    end
+    errors.add(:amount, "must be positive") unless amount.positive?
   end
 
   def create_stripe_charge
-    return if self.stripe_charge_id.present?
+    return if stripe_charge_id.present?
 
     self.stripe_charge_id = Stripe::Charge.create(
-      amount: self.amount,
+      amount: amount,
       currency: 'usd',
       customer: donor.stripe_customer.id
     ).id

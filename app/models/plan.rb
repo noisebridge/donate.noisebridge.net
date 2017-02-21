@@ -10,7 +10,7 @@ class Plan < ApplicationRecord
   before_create :create_stripe_plan
 
   def stripe_plan
-    Stripe::Plan.retrieve(self.stripe_id)
+    Stripe::Plan.retrieve(stripe_id)
   end
 
   private
@@ -20,19 +20,20 @@ class Plan < ApplicationRecord
   end
 
   def generate_stripe_id
-    self.stripe_id = "noisebridge_donation_#{amount/100}"
+    self.stripe_id = "noisebridge_donation_#{amount / 100}"
   end
 
   def create_stripe_plan
-    return if Stripe::Plan.retrieve(self.stripe_id).present? rescue false
-
+    return if Stripe::Plan.retrieve(stripe_id).present?
     Stripe::Plan.create(
-      id: self.stripe_id,
-      name: self.name,
+      id: stripe_id,
+      name: name,
       amount: amount,
       currency: 'usd',
       interval: 'month',
       statement_descriptor: "Noisebridge donation"
     )
+  rescue
+    false
   end
 end

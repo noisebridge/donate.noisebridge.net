@@ -6,17 +6,15 @@ class Project
     },
     default: {
     }
-  }
+  }.freeze
 
   attr_accessor :name, :fundraising_goal
 
   def self.find(name)
     PROJECTS.map do |project, params|
-      if project == name.to_sym
-        return new(name, params)
-      end
+      return new(name, params) if project == name.to_sym
     end
-    return new(name, PROJECTS[:default])
+    new(name, PROJECTS[:default])
   end
 
   def initialize(name, params)
@@ -28,7 +26,7 @@ class Project
     @amount_raised = Charge.tagged.where(tag: @name).sum(:amount)
   end
 
-  def has_fundraising_goal?
+  def fundraising_goal?
     fundraising_goal.present?
   end
 end

@@ -11,7 +11,7 @@ module Api
     rescue JSON::ParserError
       return head 400
     rescue StandardError => exc
-      Raven.capture_exception(exc, { affects: :stripe })
+      Raven.capture_exception(exc, affects: :stripe)
       head 500
     end
 
@@ -26,6 +26,5 @@ module Api
     private def stripe_event
       @stripe_event ||= Stripe::Event.retrieve(stripe_event_id)
     end
-
   end
 end
