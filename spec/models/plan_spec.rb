@@ -30,4 +30,3 @@ describe Plan, type: :model do
     )
   end
 end
-

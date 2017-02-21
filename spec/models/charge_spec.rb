@@ -57,7 +57,7 @@ describe Charge, type: :model do
     let!(:charge_1) { create(:charge, amount: 100_00, tag: "project-1") }
     let!(:charge_2) { create(:charge, amount: 200_00, tag: "project-1") }
     let!(:charge_3) { create(:charge, amount: 200_00, tag: "project-2") }
-    let!(:charge_4) { create(:charge, amount: 200_00, tag: nil) } 
+    let!(:charge_4) { create(:charge, amount: 200_00, tag: nil) }
 
     it "sums the Charge totals grouped by tag" do
       totals = Charge.project_totals
