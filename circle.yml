@@ -1,3 +1,6 @@
 database:
   pre:
     - mv .env .env.encrypted
+test:
+  post:
+    - bundle exec rubocop

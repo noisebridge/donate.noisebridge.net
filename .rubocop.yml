@@ -1,0 +1,64 @@
+AllCops:
+  Exclude:
+   - "bin/*"
+   - 'config.ru'
+   - "config/initializers/*"
+   - "db/schema.rb"
+   - "Gemfile"
+   - "spec/rails_helper.rb"
+   - "spec/spec_helper.rb"
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+  Exclude:
+    - "spec/**/*"
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/BlockDelimiters:
+  Exclude:
+    - "spec/**/*"
+
+Style/AlignParameters:
+  Exclude:
+    - "spec/**/*"
+
+Style/AlignHash:
+  Exclude:
+    - "spec/**/*"
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'test/test_helper.rb'
+
+Style/Documentation:
+  Enabled: false
+  
+Style/ElseAlignment:
+  Exclude:
+    - 'app/controllers/donations_controller.rb'
+
+Style/IndentationWidth:
+  Exclude:
+    - 'app/controllers/donations_controller.rb'
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/AbcSize:
+  Max: 24
+
+Metrics/LineLength:
+  Max: 127
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+
+Lint/EndAlignment:
+  Exclude:
+    - 'app/controllers/donations_controller.rb'
