@@ -13,7 +13,7 @@ class PaypalNotification < ActiveRecord::Base
   def self.create_from_payload(payload)
     create!(
       notification_id: payload["txn_id"],
-      payload: payload.to_json
+      payload: payload
     )
   end
 end
