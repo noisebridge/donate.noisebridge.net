@@ -1,5 +1,4 @@
 class StripeEvent < ApplicationRecord
-
   CHARGE_SUCCEEDED = "charge.succeeded".freeze
 
   validates_presence_of :stripe_id, :body
@@ -17,9 +16,7 @@ class StripeEvent < ApplicationRecord
 
   def process
     return if processed?
-    if should_email_receipt?
-      queue_email_receipt_mail
-    end
+    queue_email_receipt_mail if should_email_receipt?
     mark_processed!
   end
 

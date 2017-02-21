@@ -1,7 +1,6 @@
 require "rails_helper"
 
 RSpec.describe StripeEvent do
-
   it { is_expected.to validate_presence_of(:stripe_id) }
   it { is_expected.to validate_presence_of(:body) }
 
@@ -25,10 +24,10 @@ RSpec.describe StripeEvent do
   end
 
   context "#mark_processed!" do
-    let(:event) { StripeEvent.create!(stripe_id: "foo", body: {key: "value"}) }
+    let(:event) { StripeEvent.create!(stripe_id: "foo", body: { key: "value" }) }
 
     it "sets the processed_at timestamp" do
-      expect {event.mark_processed! }.to change { event.reload.processed_at }
+      expect { event.mark_processed! }.to change { event.reload.processed_at }
     end
   end
 
@@ -48,7 +47,7 @@ RSpec.describe StripeEvent do
 
   context "#type" do
     let(:event) {
-      subject.class.new(body: { "type": "foo.bar"} )
+      subject.class.new(body: { "type": "foo.bar" })
     }
 
     it "returns the event type" do
@@ -69,8 +68,7 @@ RSpec.describe StripeEvent do
                 amount: 100_00
               }
             }
-          }
-        )
+          })
       }
 
       context "with an aleady processed event" do
@@ -82,9 +80,9 @@ RSpec.describe StripeEvent do
       end
 
       it "queues an email recipt email" do
-        expect(ReceiptMailer).to receive_message_chain(:delay, :notify_of_donation).
-          with(email: donor.email, amount: 100_00, recurring: false).
-          and_return(true)
+        expect(ReceiptMailer).to receive_message_chain(:delay, :notify_of_donation)
+          .with(email: donor.email, amount: 100_00, recurring: false)
+          .and_return(true)
         expect(event.process).to eq(true)
       end
 

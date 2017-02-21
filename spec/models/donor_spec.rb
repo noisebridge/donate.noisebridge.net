@@ -10,7 +10,7 @@ describe Donor, type: :model do
   context 'creating Stripe::Customer objects' do
     it 'creates when no stripe_customer_id is set' do
       expect(Stripe::Customer).to receive(:create).once.with(
-        email: email,
+        email: email
       ).and_return(double(id: "stripe_customer_1"))
       Donor.create!(email: email, stripe_token: stripe_token)
     end
@@ -48,7 +48,7 @@ describe Donor, type: :model do
     end
 
     it "returns first name" do
-     expect(mitch.first_name).to eq("Mitch")
+      expect(mitch.first_name).to eq("Mitch")
     end
   end
 
@@ -57,14 +57,14 @@ describe Donor, type: :model do
     let(:token) { "token_123" }
 
     it "creates a new Stripe payment source" do
-      customer = double(save: true, :"default_source=" => true)
-      expect(Stripe::Customer).to receive(:retrieve).
-        and_return(customer)
-      expect(customer).to receive_message_chain(:sources, :create).
-        with(source: token).
-        and_return(double(id: "card-1"))
+      customer = double(save: true, :default_source= => true)
+      expect(Stripe::Customer).to receive(:retrieve)
+        .and_return(customer)
+      expect(customer).to receive_message_chain(:sources, :create)
+        .with(source: token)
+        .and_return(double(id: "card-1"))
+
       donor.create_payment_source(token)
     end
   end
-
 end

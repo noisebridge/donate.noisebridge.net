@@ -1,5 +1,4 @@
 class Subscription < ApplicationRecord
-
   self.table_name = 'stripe_subscriptions'
 
   belongs_to(:donor)

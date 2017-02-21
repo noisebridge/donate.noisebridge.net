@@ -8,13 +8,13 @@ module DonationsHelper
     40,
     80,
     160
-  ]
+  ].freeze
 
   STANDARD_DUES_AMOUNT = [
     [40, "Starving hacker"],
     [80, "Regular"],
     [160, "Doing well"]
-  ]
+  ].freeze
 
   def recent_donations
     Charge.all.order('created_at DESC').limit(5)
@@ -39,7 +39,7 @@ module DonationsHelper
   def amounts(name = nil)
     SuggestedDonationAmount.for_project(name).map do |i|
       [number_to_currency(i, precision: 0), i]
-    end + [["Other", "other"]]
+    end + [%w(Other other)]
   end
 
   def dues_amounts
@@ -60,4 +60,3 @@ module DonationsHelper
     STANDARD_DONATION_AMOUNTS
   end
 end
-

@@ -1,5 +1,4 @@
 class SuggestedDonationAmount
-
   ### Amounts in whole dollar USD
   SUGGESTED_AMOUNTS = {
     laser: [
@@ -7,14 +6,14 @@ class SuggestedDonationAmount
       500,
       100,
       50,
-      20,
+      20
     ],
     stickers: [
       5,
       10,
       25,
       50,
-      100,
+      100
     ],
     default: [
       10,
@@ -23,7 +22,7 @@ class SuggestedDonationAmount
       80,
       160
     ]
-  }
+  }.freeze
 
   def self.for_project(name)
     return SUGGESTED_AMOUNTS[:default] unless name.present?
