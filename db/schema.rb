@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20170220233007) do
 
   create_table "paypal_notifications", force: :cascade do |t|
     t.string   "notification_id", null: false
-    t.text     "payload",         null: false
+    t.json     "payload",         null: false
     t.datetime "processed_at"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
