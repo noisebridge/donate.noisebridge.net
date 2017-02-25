@@ -5,4 +5,3 @@ class ApplicationController < ActionController::Base
 
   include SecureHeaders::ViewHelpers
 end
-

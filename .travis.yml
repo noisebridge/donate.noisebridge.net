@@ -22,6 +22,6 @@ before_install:
   - mv .env .env.encrypted
 
 # Lint codebase after successful spec run
-# after_script:
-#   - bundle exec rubocop
+after_script:
+  - bundle exec rubocop
 

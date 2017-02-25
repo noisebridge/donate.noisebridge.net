@@ -26,7 +26,7 @@ describe ChargesController, type: :controller do
     it 'creates a Donor and Charge' do
       expect(Donor).to receive(:new).with(
         email: email,
-        stripe_token: stripe_token,
+        stripe_token: stripe_token
       ).and_call_original
 
       post :create,
@@ -44,16 +44,16 @@ describe ChargesController, type: :controller do
     end
 
     it 'allows for anonymous donations' do
-      expect(Donor).to receive(:new).with({
+      expect(Donor).to receive(:new).with(
         email: email,
         stripe_token: stripe_token,
         anonymous: "true"
-      }).and_call_original
+      ).and_call_original
 
       post :create,
         params: {
           donor: { email: email, stripe_token: stripe_token, anonymous: true },
-          charge: { amount: 10 },
+          charge: { amount: 10 }
         },
         format: :json
       expect(assigns(:donor)).to be_anonymous
@@ -67,13 +67,13 @@ describe ChargesController, type: :controller do
           email: email,
           stripe_token: stripe_token,
           anonymous: true
-          },
-          charge: {
-            amount: 10,
-            tag: "bottle-light"
-          }
         },
-        format: :json
+        charge: {
+          amount: 10,
+          tag: "bottle-light"
+        }
+      }, format: :json
+
       expect(assigns(:donor)).to be_anonymous
       expect(assigns(:charge).tag).to eq("bottle-light")
     end
@@ -82,17 +82,17 @@ describe ChargesController, type: :controller do
   context 'creating Subscriptions' do
     before do
       allow(Stripe::Plan).to receive(:create)
-      allow(stripe_customer).to receive_message_chain(:subscriptions, :create).
-        and_return(stripe_subscription)
+      allow(stripe_customer).to receive_message_chain(:subscriptions, :create)
+        .and_return(stripe_subscription)
     end
 
     let(:plan) { Plan.create(amount: 10_00) }
     let(:stripe_subscription) { double(id: 'sub-1') }
 
     it 'creates subscriptions when charge[:recurring] is passed' do
-      expect(Plan).to receive(:find_or_create_by!).with({
+      expect(Plan).to receive(:find_or_create_by!).with(
         amount: 10_00
-      }).and_return(plan)
+      ).and_return(plan)
 
       post :create,
         params: {

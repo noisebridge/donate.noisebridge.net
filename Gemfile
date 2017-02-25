@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'autoprefixer-rails'
 gem 'dotenv-rails'
+gem 'httparty'
 gem 'jquery-rails'
 gem 'pg'
 gem 'rails', '~> 5.0.0'
@@ -17,6 +18,7 @@ group :development, :test do
   gem 'foreman'
   gem 'pry'
   gem 'spring'
+  gem 'rubocop', '~> 0.47.0'
 end
 
 group :development do
@@ -26,7 +28,6 @@ end
 group :test do
   gem 'rails-controller-testing'
   gem 'factory_girl_rails'
-  gem 'guard-rspec', require: false
   gem 'rspec-rails', '~> 3.1'
   gem 'shoulda-matchers'
 end

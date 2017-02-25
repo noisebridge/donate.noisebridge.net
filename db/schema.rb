@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407055048) do
+ActiveRecord::Schema.define(version: 20170220233007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 20160407055048) do
     t.datetime "updated_at"
     t.string   "name",               limit: 120
     t.boolean  "anonymous",                      default: false
+  end
+
+  create_table "paypal_notifications", force: :cascade do |t|
+    t.string   "notification_id", null: false
+    t.json     "payload",         null: false
+    t.datetime "processed_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["notification_id"], name: "index_paypal_notifications_on_notification_id", unique: true, using: :btree
   end
 
   create_table "stripe_events", force: :cascade do |t|

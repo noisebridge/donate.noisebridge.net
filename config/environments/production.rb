@@ -46,7 +46,7 @@ Rails.application.configure do
   config.log_level = :warn
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :uuid ]
+  config.log_tags = [:uuid]
 
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
@@ -79,6 +79,6 @@ Rails.application.configure do
 
   # Set a custom X-VERSION header w/ current git SHA
   config.action_dispatch.default_headers.merge!(
-    'X-Version' =>  Dir.pwd.match(/noisebridge-donate-([0-9a-f]{40})/)[1]
+    'X-Version': Dir.pwd.match(/noisebridge-donate-([0-9a-f]{40})/)[1]
   )
 end

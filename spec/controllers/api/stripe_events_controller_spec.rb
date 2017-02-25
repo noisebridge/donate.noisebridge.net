@@ -5,9 +5,9 @@ RSpec.describe Api::StripeEventsController do
 
   context "POST #create" do
     it "retrieves the Stripe::Event and persists it" do
-      expect(Stripe::Event).to receive(:retrieve).
-                                with(event.stripe_id).
-                                and_return(true)
+      expect(Stripe::Event).to receive(:retrieve)
+        .with(event.stripe_id)
+        .and_return(true)
       expect(StripeEvent).to receive(:record_and_process)
 
       post :create, body: { id: event.stripe_id }.to_json, format: :json

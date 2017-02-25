@@ -1,15 +1,10 @@
 class ReceiptMailer < ActionMailer::Base
-
   def notify_of_donation(email:, amount:, recurring:)
     @amount = amount
     @donor = Donor.find_by(email: email)
     @recurring = recurring
 
-    subject = if recurring
-      "We have received your recurring donation"
-    else
-      "We have received your donation"
-    end
+    subject = recurring ? "We have received your recurring donation" : "We have received your donation"
 
     mail(
       from: 'Noisebridge <no-reply@donate.noisebridge.net>',

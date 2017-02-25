@@ -1,3 +1,9 @@
 database:
   pre:
     - mv .env .env.encrypted
+dependencies:
+  pre:
+    - gem update --system
+test:
+  post:
+    - bundle exec rubocop
