@@ -47,6 +47,10 @@ Style/IndentationWidth:
   Exclude:
     - 'app/controllers/donations_controller.rb'
 
+Style/MultilineIfModifier:
+  Exclude:
+    - "config/routes.rb"
+
 Metrics/MethodLength:
   Max: 20
 
@@ -55,6 +59,8 @@ Metrics/AbcSize:
 
 Metrics/LineLength:
   Max: 127
+  Exclude:
+    - "config/routes.rb"
 
 Metrics/BlockLength:
   Exclude:
