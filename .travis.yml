@@ -20,6 +20,7 @@ before_script:
 
 # Get rid of encrypted .env which it can't read
 before_install: 
+  - gem update --system
   - mv .env .env.encrypted
 
 # Lint codebase after successful spec run
