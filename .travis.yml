@@ -5,8 +5,9 @@ sudo: false
 # Configure ruby versions
 language: ruby
 rvm: 
-  - 2.3.2
-  - 2.4.0
+  - 2.3.6
+  - 2.4.3
+  - 2.5.0
 
 # Use latest PostgreSQL
 addons:
@@ -19,6 +20,7 @@ before_script:
 
 # Get rid of encrypted .env which it can't read
 before_install: 
+  - gem update --system
   - mv .env .env.encrypted
 
 # Lint codebase after successful spec run
