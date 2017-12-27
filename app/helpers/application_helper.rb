@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def github_link
-    link_to("donate.noisebridge.net", GITHUB_URL)
+    link_to("donate.noisebridge.net", root_url)
   end
 
   def bitcoin_link
