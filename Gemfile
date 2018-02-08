@@ -4,8 +4,8 @@ gem 'autoprefixer-rails'
 gem 'dotenv-rails'
 gem 'httparty'
 gem 'jquery-rails'
-gem 'pg'
-gem 'rails', '~> 5.0.0'
+gem 'pg', '~> 0.21.0'
+gem 'rails', '~> 5.1.0'
 gem 'sass-rails', '~> 5.0'
 gem 'secure_headers'
 gem 'sentry-raven'
@@ -18,7 +18,7 @@ group :development, :test do
   gem 'foreman'
   gem 'pry'
   gem 'spring'
-  gem 'rubocop', '~> 0.47.0'
+  gem 'rubocop', '~> 0.52.0'
 end
 
 group :development do
