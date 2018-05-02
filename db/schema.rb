@@ -10,19 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220233007) do
+ActiveRecord::Schema.define(version: 20180502043429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "charges", force: :cascade do |t|
-    t.integer  "donor_id",         null: false
-    t.integer  "amount",           null: false
-    t.string   "stripe_charge_id", null: false
+    t.integer  "donor_id",                        null: false
+    t.integer  "amount",                          null: false
+    t.string   "stripe_charge_id",                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "subscription_id"
     t.string   "tag"
+    t.boolean  "anonymous",        default: true, null: false
   end
 
   create_table "donors", force: :cascade do |t|
