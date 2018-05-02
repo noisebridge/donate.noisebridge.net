@@ -19,10 +19,16 @@ class DonationsController < ApplicationController
 
   private def find_or_create_donor
     @donor = if Donor.exists?(email: donor_params[:email])
-      Donor.find_by(email: donor_params[:email])
+      find_and_update_donor
     else
       create_donor
     end
+  end
+
+  private def find_and_update_donor
+    donor = Donor.find_by(email: donor_params[:email])
+    donor.update_attributes!(donor_params)
+    donor
   end
 
   private def create_donor

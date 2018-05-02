@@ -23,6 +23,26 @@ describe ChargesController, type: :controller do
         .and_return(stripe_charge)
     end
 
+    context 'updating the Donor details for existing donors' do
+      it 'updates the Donor details for successive charges' do
+        donor = Donor.create!(email: email, stripe_token: stripe_token, name: "Previous")
+        post :create,
+             params: {
+               donor: {
+                 email: email,
+                 stripe_token: stripe_token,
+                 name: "Currently"
+               },
+               charge: {
+                 amount: 10
+               }
+             },
+             format: :json
+        expect(assigns(:charge)).to be_persisted
+        expect(donor.reload.name).to eq("Currently")
+      end
+    end
+
     it 'creates a Donor and Charge' do
       expect(Donor).to receive(:new).with(
         email: email,
