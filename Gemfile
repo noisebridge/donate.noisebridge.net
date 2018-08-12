@@ -18,7 +18,7 @@ group :development, :test do
   gem 'foreman'
   gem 'pry'
   gem 'spring'
-  gem 'rubocop', '~> 0.47.0'
+  gem 'rubocop'
 end
 
 group :development do
