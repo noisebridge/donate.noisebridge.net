@@ -4,14 +4,10 @@ class StripeEvent < ApplicationRecord
   validates_presence_of :stripe_id, :body
 
   def self.record_and_process(stripe_event)
-    if find_by(stripe_id: stripe_event.id)
-      find_by(stripe_id: stripe_event.id)
-    else
-      create!(
-        stripe_id: stripe_event.id,
-        body: stripe_event.as_json
-      )
-    end.process
+    find_by(stripe_id: stripe_event.id) || create!(
+      stripe_id: stripe_event.id,
+      body: stripe_event.as_json
+    ).process
   end
 
   def process
@@ -34,25 +30,27 @@ class StripeEvent < ApplicationRecord
 
   def recurring?
     body['data']['object']['invoice'].present?
-  rescue
+  rescue StandardError
     false
   end
 
-  private def should_email_receipt?
+  private
+
+  def should_email_receipt?
     type == CHARGE_SUCCEEDED
   end
 
-  private def customer_id
+  def customer_id
     body['data']['object']['customer']
   end
 
-  private def queue_email_receipt_mail
+  def queue_email_receipt_mail
     email = Donor.find_by(stripe_customer_id: customer_id).email
     amount = body['data']['object']['amount']
     ReceiptMailer.delay.notify_of_donation(email: email, amount: amount, recurring: recurring?)
   end
 
-  private def processed?
+  def processed?
     processed_at.present?
   end
 end

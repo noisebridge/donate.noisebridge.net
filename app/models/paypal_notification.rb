@@ -5,7 +5,7 @@ class PaypalNotification < ActiveRecord::Base
 
   def self.verify_raw_payload(raw_payload)
     HTTParty.post(IPN_VERIFY_URL, body: raw_payload).body == "VERIFIED"
-  rescue
+  rescue StandardError
     false
   end
 
