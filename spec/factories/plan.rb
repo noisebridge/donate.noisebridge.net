@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :plan do
     amount 10_00
     name { "#{amount} / month" }

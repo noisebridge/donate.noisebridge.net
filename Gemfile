@@ -27,7 +27,7 @@ end
 
 group :test do
   gem 'rails-controller-testing'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 3.1'
   gem 'shoulda-matchers'
 end

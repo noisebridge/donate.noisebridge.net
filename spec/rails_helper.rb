@@ -52,7 +52,7 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   # Include factory girl
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
   [:controller, :view, :request].each do |type|
     config.include ::Rails::Controller::Testing::TestProcess, type: type
