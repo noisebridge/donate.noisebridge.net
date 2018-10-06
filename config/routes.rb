@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   get '/thanks', to: 'donations#thanks'
 
-  resources :projects, only: [:show, :index]
+  resources :projects, only: %i[show index]
 
   scope :donations do
     resource :subscriptions, only: [:create]

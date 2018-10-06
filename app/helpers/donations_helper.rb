@@ -39,7 +39,7 @@ module DonationsHelper
   def amounts(name = nil)
     SuggestedDonationAmount.for_project(name).map do |i|
       [number_to_currency(i, precision: 0), i]
-    end + [%w(Other other)]
+    end + [%w[Other other]]
   end
 
   def dues_amounts

@@ -33,7 +33,7 @@ class Plan < ApplicationRecord
       interval: 'month',
       statement_descriptor: "Noisebridge donation"
     )
-  rescue
+  rescue StandardError
     false
   end
 end

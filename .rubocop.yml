@@ -24,11 +24,11 @@ Style/BlockDelimiters:
   Exclude:
     - "spec/**/*"
 
-Style/AlignParameters:
+Layout/AlignParameters:
   Exclude:
     - "spec/**/*"
 
-Style/AlignHash:
+Layout/AlignHash:
   Exclude:
     - "spec/**/*"
 
@@ -39,11 +39,11 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Enabled: false
   
-Style/ElseAlignment:
+Layout/ElseAlignment:
   Exclude:
     - 'app/controllers/donations_controller.rb'
 
-Style/IndentationWidth:
+Layout/IndentationWidth:
   Exclude:
     - 'app/controllers/donations_controller.rb'
 
@@ -66,6 +66,10 @@ Metrics/BlockLength:
   Exclude:
     - "spec/**/*"
 
-Lint/EndAlignment:
+Layout/EndAlignment:
   Exclude:
     - 'app/controllers/donations_controller.rb'
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - "spec/**/*"

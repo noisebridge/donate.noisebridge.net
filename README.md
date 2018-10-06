@@ -9,7 +9,7 @@ A really simple rails application to accept credit card donations for [Noisebrid
 ### Requirements
 
   * PostgreSQL
-  * Ruby 2.3.0
+  * Ruby >= 2.4.0
   * foreman `gem install foreman`
 
 If you have `rbenv` and `ruby-build` installed you should be able to do the following
@@ -29,7 +29,7 @@ If you don't have access to the decrypted `.env` file locally you'll likely see
 an error like so when you attempt to attempt to run the Rails console or server
 locally. 
 ```
-/home/patrickod/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/dotenv-2.1.1/lib/dotenv/parser.rb:44:in `split': invalid byte sequence in UTF-8 (ArgumentError)
+/home/patrickod/.rbenv/versions/2.4.4/lib/ruby/gems/2.4.4/gems/dotenv-2.1.1/lib/dotenv/parser.rb:44:in `split': invalid byte sequence in UTF-8 (ArgumentError)
 ```
 
 This is because `dotenv` is attempting to parse a non-ASCII file (the

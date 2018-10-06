@@ -18,7 +18,7 @@ group :development, :test do
   gem 'foreman'
   gem 'pry'
   gem 'spring'
-  gem 'rubocop', '~> 0.47.0'
+  gem 'rubocop'
 end
 
 group :development do
@@ -27,7 +27,7 @@ end
 
 group :test do
   gem 'rails-controller-testing'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 3.1'
   gem 'shoulda-matchers'
 end

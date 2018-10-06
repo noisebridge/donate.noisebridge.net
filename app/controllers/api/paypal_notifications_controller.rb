@@ -13,7 +13,9 @@ module Api
       end
     end
 
-    private def duplicate_notification
+    private
+
+    def duplicate_notification
       Rails.logger.info("Received duplicate notification: #{params['txn_id']}")
       render plain: 'INVALID', status: 400
     end

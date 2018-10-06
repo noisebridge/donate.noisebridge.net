@@ -9,7 +9,9 @@ class ChargesController < DonationsController
     end
   end
 
-  private def create_subscription
+  private
+
+  def create_subscription
     return redirect_to root_url unless update_credit_card(donor_params[:stripe_token])
 
     plan = Plan.find_or_create_by!(
@@ -32,7 +34,7 @@ class ChargesController < DonationsController
     redirect_to root_url
   end
 
-  private def create_charge
+  def create_charge
     return redirect_to root_url unless update_credit_card(donor_params[:stripe_token])
 
     # HACK: TODO: fix the dollars / cents thing
@@ -49,7 +51,7 @@ class ChargesController < DonationsController
     end
   end
 
-  private def update_credit_card(token)
+  def update_credit_card(token)
     @donor.create_payment_source(token)
     true
   rescue Stripe::CardError => exc
