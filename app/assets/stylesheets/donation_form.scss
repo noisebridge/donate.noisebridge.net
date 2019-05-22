@@ -55,4 +55,13 @@
   .input-group.custom-amount {
     margin-top: 10px;
   }
+
+  .simple_captcha {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    align-items: center;
+    margin-bottom: 15px;
+  }
 }
