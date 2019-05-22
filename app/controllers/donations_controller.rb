@@ -20,6 +20,12 @@ class DonationsController < ApplicationController
   end
 
   def find_or_create_donor
+    unless simple_captcha_valid?
+      flash[:danger] = "Invalid CAPTCHA"
+      return redirect_to root_url
+    end
+
+
     @donor = if Donor.exists?(email: donor_params[:email])
       find_and_update_donor
     else
