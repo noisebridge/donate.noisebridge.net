@@ -4,4 +4,5 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   include SecureHeaders::ViewHelpers
+  include SimpleCaptcha::ControllerHelpers
 end
