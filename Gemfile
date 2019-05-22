@@ -13,6 +13,7 @@ gem 'sidekiq'
 gem 'skylight'
 gem 'stripe', :source => 'https://code.stripe.com/'
 gem 'uglifier', '>= 1.3.0'
+gem 'simple_captcha2', require: 'simple_captcha'
 
 group :development, :test do
   gem 'foreman'
