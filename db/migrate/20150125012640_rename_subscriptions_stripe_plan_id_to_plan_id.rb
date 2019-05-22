@@ -1,4 +1,4 @@
-class RenameSubscriptionsStripePlanIdToPlanId < ActiveRecord::Migration
+class RenameSubscriptionsStripePlanIdToPlanId < ActiveRecord::Migration[4.2]
   def up
     remove_column(:stripe_subscriptions, :stripe_plan_id)
     add_column(:stripe_subscriptions, :plan_id, :integer, null: false)

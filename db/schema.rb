@@ -15,63 +15,63 @@ ActiveRecord::Schema.define(version: 20180502043429) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "charges", force: :cascade do |t|
-    t.integer  "donor_id",                        null: false
-    t.integer  "amount",                          null: false
-    t.string   "stripe_charge_id",                null: false
+  create_table "charges", id: :serial, force: :cascade do |t|
+    t.integer "donor_id", null: false
+    t.integer "amount", null: false
+    t.string "stripe_charge_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "subscription_id"
-    t.string   "tag"
-    t.boolean  "anonymous",        default: true, null: false
+    t.integer "subscription_id"
+    t.string "tag"
+    t.boolean "anonymous", default: true, null: false
   end
 
-  create_table "donors", force: :cascade do |t|
-    t.string   "email",                                          null: false
-    t.string   "stripe_customer_id",                             null: false
+  create_table "donors", id: :serial, force: :cascade do |t|
+    t.string "email", null: false
+    t.string "stripe_customer_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",               limit: 120
-    t.boolean  "anonymous",                      default: false
+    t.string "name", limit: 120
+    t.boolean "anonymous", default: false
   end
 
-  create_table "paypal_notifications", force: :cascade do |t|
-    t.string   "notification_id", null: false
-    t.json     "payload",         null: false
+  create_table "paypal_notifications", id: :serial, force: :cascade do |t|
+    t.string "notification_id", null: false
+    t.json "payload", null: false
     t.datetime "processed_at"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["notification_id"], name: "index_paypal_notifications_on_notification_id", unique: true, using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notification_id"], name: "index_paypal_notifications_on_notification_id", unique: true
   end
 
-  create_table "stripe_events", force: :cascade do |t|
-    t.string   "stripe_id",    null: false
-    t.json     "body"
+  create_table "stripe_events", id: :serial, force: :cascade do |t|
+    t.string "stripe_id", null: false
+    t.json "body"
     t.datetime "processed_at"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["stripe_id"], name: "index_stripe_events_on_stripe_id", unique: true, using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stripe_id"], name: "index_stripe_events_on_stripe_id", unique: true
   end
 
-  create_table "stripe_plans", force: :cascade do |t|
-    t.string   "stripe_id"
-    t.string   "name",       null: false
-    t.integer  "amount",     null: false
+  create_table "stripe_plans", id: :serial, force: :cascade do |t|
+    t.string "stripe_id"
+    t.string "name", null: false
+    t.integer "amount", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["stripe_id"], name: "index_stripe_plans_on_stripe_id", unique: true, using: :btree
+    t.index ["stripe_id"], name: "index_stripe_plans_on_stripe_id", unique: true
   end
 
-  create_table "stripe_subscriptions", force: :cascade do |t|
-    t.string   "stripe_status"
+  create_table "stripe_subscriptions", id: :serial, force: :cascade do |t|
+    t.string "stripe_status"
     t.datetime "cancellation_requested_at"
     t.datetime "cancelled_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "donor_id",                                  null: false
-    t.integer  "plan_id",                                   null: false
-    t.string   "stripe_subscription_id",                    null: false
-    t.boolean  "dues",                      default: false, null: false
+    t.integer "donor_id", null: false
+    t.integer "plan_id", null: false
+    t.string "stripe_subscription_id", null: false
+    t.boolean "dues", default: false, null: false
   end
 
 end
