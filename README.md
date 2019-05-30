@@ -11,6 +11,8 @@ A really simple rails application to accept credit card donations for [Noisebrid
   * PostgreSQL
   * Ruby >= 2.4.0
   * foreman `gem install foreman`
+  * ghostscript `apt-get install ghostscript`
+  * imagemagick `apt-get install imagemagick`
 
 If you have `rbenv` and `ruby-build` installed you should be able to do the following
 ```bash

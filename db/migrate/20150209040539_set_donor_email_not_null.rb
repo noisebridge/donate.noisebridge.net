@@ -1,4 +1,4 @@
-class SetDonorEmailNotNull < ActiveRecord::Migration
+class SetDonorEmailNotNull < ActiveRecord::Migration[4.2]
   def up
     change_column(:donors, :email, :string, null: false)
   end

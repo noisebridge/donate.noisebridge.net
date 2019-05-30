@@ -1,4 +1,4 @@
-class CreateStripeSubscriptions < ActiveRecord::Migration
+class CreateStripeSubscriptions < ActiveRecord::Migration[4.2]
   def change
     create_table :stripe_subscriptions do |t|
       t.integer :stripe_plan_id, null: false

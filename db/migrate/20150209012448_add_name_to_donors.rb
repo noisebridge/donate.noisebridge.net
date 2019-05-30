@@ -1,4 +1,4 @@
-class AddNameToDonors < ActiveRecord::Migration
+class AddNameToDonors < ActiveRecord::Migration[4.2]
   def up
     add_column(:donors, :name, :string, limit: 120)
   end
