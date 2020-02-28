@@ -1,6 +1,10 @@
 # Noisebridge-donate
 
-# This repo is out of date -- donate.noisebridge.net has been migrated to Python. The code is at https://github.com/noisebridge/python-nb-donate/ and it is deployed with ansible in https://github.com/noisebridge/infrastructure/
+# This repo is obsolete
+
+**donate.noisebridge.net has been migrated to Python.**
+
+**The code is at https://github.com/noisebridge/python-nb-donate/ and it is deployed with ansible in https://github.com/noisebridge/infrastructure/**
 
 [![CircleCI](https://circleci.com/gh/noisebridge/donate.noisebridge.net/tree/master.svg?style=svg)](https://circleci.com/gh/noisebridge/donate.noisebridge.net/tree/master)
 
